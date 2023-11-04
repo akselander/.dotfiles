@@ -8,7 +8,12 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {},
+    ensure_installed = {
+        'tsserver',
+        'eslint',
+        'lua_ls',
+        'gopls',
+    },
     handlers = {
         lsp_zero.default_setup,
     },
@@ -21,6 +26,7 @@ lsp_zero.format_on_save({
     },
     servers = {
         ['eslint'] = { 'javascript', 'typescript' },
-        ['lua'] = { 'lua' },
+        ['lua_ls'] = { 'lua' },
+        ['gopls'] = { 'go', 'godmod', 'gowork', 'gotmpl' }
     }
 })
