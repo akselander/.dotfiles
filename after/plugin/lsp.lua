@@ -19,6 +19,14 @@ require('mason-lspconfig').setup({
     },
 })
 
+local lua_opts = lsp_zero.nvim_lua_ls({
+    globals = {
+        "vim",
+    }
+})
+
+require('lspconfig').lua_ls.setup(lua_opts)
+
 lsp_zero.format_on_save({
     format_opts = {
         async = false,
