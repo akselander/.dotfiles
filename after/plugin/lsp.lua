@@ -13,6 +13,7 @@ require('mason-lspconfig').setup({
         'eslint',
         'lua_ls',
         'gopls',
+        'html',
     },
     handlers = {
         lsp_zero.default_setup,
@@ -35,6 +36,7 @@ lsp_zero.format_on_save({
     servers = {
         ['eslint'] = { 'javascript', 'typescript' },
         ['lua_ls'] = { 'lua' },
-        ['gopls'] = { 'go', 'godmod', 'gowork', 'gotmpl' }
+        ['gopls'] = { 'go', 'godmod', 'gowork', 'gotmpl' },
+        ['html'] = { 'html' },
     }
 })
