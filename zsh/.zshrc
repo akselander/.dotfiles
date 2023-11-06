@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh_profile
 
 # pnpm
-export PNPM_HOME="/home/mpaulson/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 #
