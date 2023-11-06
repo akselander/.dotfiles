@@ -26,7 +26,19 @@ local lua_opts = lsp_zero.nvim_lua_ls({
     }
 })
 
-require('lspconfig').lua_ls.setup(lua_opts)
+local lspconfig = require('lspconfig')
+lspconfig.lua_ls.setup(lua_opts)
+
+lspconfig.eslint.setup({
+    --- ...
+    on_attach = function(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = '*.tsx,*.jsx,*.js,*.ts',
+            buffer = bufnr,
+            command = "EslintFixAll",
+        })
+    end,
+})
 
 lsp_zero.format_on_save({
     format_opts = {
@@ -34,7 +46,6 @@ lsp_zero.format_on_save({
         timeout_ms = 10000,
     },
     servers = {
-        ['eslint'] = { 'javascript', 'typescript' },
         ['lua_ls'] = { 'lua' },
         ['gopls'] = { 'go', 'godmod', 'gowork', 'gotmpl' },
         ['html'] = { 'html' },
