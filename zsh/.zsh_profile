@@ -8,6 +8,7 @@ addToPathFront() {
     export PATH="${1}${PATH:+:${PATH}}"
 }
 
+addToPathFront /opt/homebrew/bin
 addToPathFront $HOME/.local/.npm-global/bin
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
