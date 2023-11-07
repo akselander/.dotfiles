@@ -13,7 +13,7 @@ addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.local/n/bin/
 addToPathFront $HOME/.local/go/bin
-addToPathFront $HOME/go/bin
+addToPathFront /usr/local/go/bin
 
 if [[ "$OSTYPE" == "freebsd"* ]]; then
     echo 'adding'

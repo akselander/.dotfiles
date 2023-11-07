@@ -23,6 +23,7 @@ require('mason-lspconfig').setup({
         'lua_ls',
         'gopls',
         'html',
+        'cssls',
     },
     handlers = {
         lsp_zero.default_setup,
@@ -69,5 +70,6 @@ lsp_zero.format_on_save({
         ['lua_ls'] = { 'lua' },
         ['gopls'] = { 'go', 'godmod', 'gowork', 'gotmpl' },
         ['html'] = { 'html' },
+        ['cssls'] = { 'css' },
     }
 })
