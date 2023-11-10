@@ -15,8 +15,7 @@ addToPathFront $HOME/.local/n/bin/
 addToPathFront $HOME/.local/go/bin
 addToPathFront /usr/local/go/bin
 
-if [[ "$OSTYPE" == "freebsd"* ]]; then
-    echo 'adding'
+if [[ "$OSTYPE" == "darwin"* ]]; then
     addToPathFront /opt/homebrew/bin
 fi
 
