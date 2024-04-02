@@ -1,9 +1,15 @@
 VIM="nvim"
+PERSONAL=$HOME/.config/personal
+source $PERSONAL/env
+for i in `find -L $PERSONAL`; do
+    source $i
+done
 
 export GIT_EDITOR=$VIM
-export N_PREFIX="$HOME/.local/n"
+export N_PREFIX=$HOME/.local/n
 export DOTFILES=$HOME/.dotfiles
-
+export GOPATH=$HOME/go
+export ANDROID_HOME=$HOME/Library/Android/sdk
 addToPathFront() {
     export PATH="${1}${PATH:+:${PATH}}"
 }
@@ -13,8 +19,11 @@ addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.local/n/bin/
 addToPathFront $HOME/.local/go/bin
+addToPathFront $GOPATH/bin
 addToPathFront /usr/local/go/bin
-
+addToPathFront $HOME/.cargo/env
+addToPathFront $ANDROID_HOME/emulator
+addToPathFront $ANDROID_HOME/platform-tools
 if [[ "$OSTYPE" == "darwin"* ]]; then
     addToPathFront /opt/homebrew/bin
 fi
