@@ -9,6 +9,7 @@
   imports =
     [
       ../features/cli
+      ../features/neovim
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

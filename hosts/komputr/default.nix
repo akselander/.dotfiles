@@ -36,11 +36,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-     neovim
-     vim
-     kitty
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
