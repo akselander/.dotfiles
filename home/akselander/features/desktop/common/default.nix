@@ -3,5 +3,6 @@
   imports = [
     ./discord.nix
     ./firefox.nix
+    ./font.nix
   ];
 }

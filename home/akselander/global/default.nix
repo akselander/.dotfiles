@@ -44,4 +44,9 @@
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "23.11";
   };
+
+  colorscheme.mode = lib.mkOverride 1499 "dark";
+  home.file = {
+    ".colorscheme.json".text = builtins.toJSON config.colorscheme;
+  };
 }
