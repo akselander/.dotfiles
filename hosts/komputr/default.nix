@@ -15,10 +15,8 @@
     ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
-    ../common/optional/nvidia.nix
   ];
 
-  programs.hyprland.enable = true;
   networking = {
     hostName = "komputr";
     networkmanager.enable = true;
@@ -35,7 +33,22 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  environment.variables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+  hardware = {
+    nvidia = {
+      prime.offload.enable = false;
+      modesetting.enable = true;
+    };
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+    bluetooth.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -44,5 +57,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
