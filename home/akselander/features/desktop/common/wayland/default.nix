@@ -1,7 +1,11 @@
 {pkgs, ...}: {
   imports = [
     ./gammastep.nix
+    ./kitty.nix
   ];
+
+  xdg.mimeApps.enable = true;
+
   home.packages = with pkgs; [
     # pkgs
   ];

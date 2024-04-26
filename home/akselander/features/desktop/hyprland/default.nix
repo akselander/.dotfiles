@@ -40,7 +40,7 @@
         "col.shadow" = "0x44000000";
         "col.shadow_inactive" = "0x66000000";
       };
-      
+
       animations = {
         enabled = true;
         bezier = [
@@ -66,8 +66,11 @@
         ];
       };
 
-      bind = [
-          "SUPER,Return,exec,kitty"
+      bind = let
+        defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
+      in
+        [
+          "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
           "SUPER,F,exec,firefox"
 	];
     };

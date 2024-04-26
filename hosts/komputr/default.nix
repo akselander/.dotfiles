@@ -10,14 +10,27 @@
 
     ./hardware-configuration.nix
     ../common/global
-
-    ../../modules/nixos/wm/hyprland.nix
     ../common/users/akselander
 
-    ../../modules/nixos/pipewire.nix
-    ../../modules/nixos/quietboot.nix
-    ../../modules/nixos/nvidia.nix
+    ../common/optional/sddm.nix
+    ../common/optional/pipewire.nix
+    ../common/optional/quietboot.nix
+    ../common/optional/nvidia.nix
   ];
+
+  security = {
+    pam.services.swaylock = {
+      text = ''
+        auth include login
+      '';
+     };
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
 
   networking = {
     hostName = "komputr";
