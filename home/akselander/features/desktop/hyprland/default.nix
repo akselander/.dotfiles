@@ -4,8 +4,10 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: let
+  hyprland = pkgs.inputs.hyprland.hyprland.override {wrapRuntimeDeps = false;};
+  xdph = pkgs.inputs.hyprland.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+in {
   imports = [
     ../common
     ../common/wayland
@@ -13,8 +15,14 @@
 
   ];
 
+  xdg.portal = {
+    extraPortals = [xdph];
+    configPackages = [hyprland];
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
+    package = hyprland;
     plugins = [];
     systemd = {
       enable = true;

@@ -26,12 +26,7 @@
      };
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  };
-
+  programs.hyprland.enable = true;
   networking = {
     hostName = "komputr";
     networkmanager.enable = true;
