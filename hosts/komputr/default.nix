@@ -33,6 +33,9 @@
     };
   };
 
+  # Loads nvidia driver for bothj X and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
   environment.variables = {
     WLR_NO_HARDWARE_CURSORS = "1";
   };
