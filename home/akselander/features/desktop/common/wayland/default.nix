@@ -2,8 +2,8 @@
   imports = [
     ./gammastep.nix
     ./kitty.nix
-#    ./swaylock.nix
-#    ./swayidle.nix
+    ./swaylock.nix
+    ./swayidle.nix
   ];
 
   xdg.mimeApps.enable = true;
