@@ -15,7 +15,16 @@
     inherit inputs outputs;
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+      ];
+      warn-dirty = false;
+    };
+  };
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {
