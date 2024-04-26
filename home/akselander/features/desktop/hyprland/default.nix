@@ -29,6 +29,9 @@ in {
       variables = ["--all"];
     };
     settings = {
+      input = {
+        kb_layout = "pl";
+      };
       decoration = {
         active_opacity = 0.97;
         inactive_opacity = 0.77;

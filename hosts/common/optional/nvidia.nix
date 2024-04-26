@@ -19,7 +19,6 @@
   services.hardware.openrgb.enable = true;
 
   services = {
-    xserver.videoDrivers = ["nvidia"];
     printing.enable = true;
   };
 }

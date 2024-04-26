@@ -18,4 +18,7 @@ in {
   };
 
   home-manager.users.akselander = import ../../../../home/akselander/${config.networking.hostName}.nix;
+  security.pam.services = {
+    swaylock = {};
+  };
 }

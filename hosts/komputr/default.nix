@@ -18,23 +18,6 @@
     ../common/optional/nvidia.nix
   ];
 
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "pl";
-      variant = "";
-    };
-  };
-
-
-  security = {
-    pam.services.swaylock = {
-      text = ''
-        auth include login
-      '';
-     };
-  };
-
   programs.hyprland.enable = true;
   networking = {
     hostName = "komputr";
