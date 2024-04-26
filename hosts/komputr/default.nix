@@ -12,11 +12,20 @@
     ../common/global
     ../common/users/akselander
 
-    ../common/optional/sddm.nix
+    ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
     ../common/optional/nvidia.nix
   ];
+
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "pl";
+      variant = "";
+    };
+  };
+
 
   security = {
     pam.services.swaylock = {
