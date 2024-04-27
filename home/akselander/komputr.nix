@@ -7,6 +7,7 @@
   imports = [
     ./global
     ./features/desktop/hyprland
+    ./features/games
   ];
 
   wallpaper = lib.mkDefault pkgs.wallpapers.outer-wilds;

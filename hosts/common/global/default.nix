@@ -9,6 +9,7 @@
     [
       inputs.home-manager.nixosModules.home-manager
       ./locale.nix
+      ./steam-hardware.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 
