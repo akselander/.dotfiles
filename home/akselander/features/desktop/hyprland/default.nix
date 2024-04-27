@@ -136,7 +136,19 @@ in {
       in [
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
         "SUPER,F,exec,firefox"
-      ];
+      ]
+      ++
+      # Screen lock
+      (
+        let
+          swaylock = lib.getExe config.programs.swaylock.package;
+        in
+          lib.optionals config.programs.swaylock.enable [
+            ",XF86Launch5,exec,${swaylock} -S --grace 2"
+            ",XF86Launch4,exec,${swaylock} -S --grace 2"
+            "SUPER,backspace,exec,${swaylock} -S --grace 2"
+          ]
+      );
     };
   };
 }
