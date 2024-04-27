@@ -24,6 +24,11 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    awscli-console = {
+      url = "github:zoocha/awscli-console";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

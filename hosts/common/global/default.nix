@@ -8,24 +8,15 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      ./fish.nix
       ./locale.nix
+      ./nix.nix
       ./steam-hardware.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
-  };
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-        "ca-derivations"
-      ];
-      warn-dirty = false;
-    };
   };
 
   nixpkgs = {

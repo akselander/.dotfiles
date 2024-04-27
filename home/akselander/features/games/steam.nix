@@ -41,7 +41,7 @@
     ];
   in
     pkgs.writeTextDir "share/wayland-sessions/steam-session.desktop" # ini
-
+    
     ''
       [Desktop Entry]
       Name=Steam Session

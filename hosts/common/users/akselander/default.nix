@@ -12,7 +12,7 @@ in {
     isNormalUser = true;
     initialPassword = "12345";
     description = "akselander";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = ["networkmanager" "wheel"];
     packages = [pkgs.home-manager];
   };
