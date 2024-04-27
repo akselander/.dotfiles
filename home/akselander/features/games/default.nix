@@ -3,6 +3,6 @@
     ./steam.nix
   ];
   home = {
-    packages = with pkgs; [gamescope];
+    packages = with pkgs; [gamescope protonup-ng];
   };
 }
