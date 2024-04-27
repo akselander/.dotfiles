@@ -25,12 +25,65 @@ in {
     plugins = [];
     systemd = {
       enable = true;
-      variables = ["--all"];
+      # Same as default, but stop graphical-session too
+      extraCommands = lib.mkBefore [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
     };
-    settings = {
+    settings = let
+      active = "0xaa${lib.removePrefix "#" config.colorscheme.colors.primary}";
+      inactive = "0xaa${lib.removePrefix "#" config.colorscheme.colors.surface_bright}";
+    in {
+      general = {
+        cursor_inactive_timeout = 4;
+        gaps_in = 15;
+        gaps_out = 20;
+        border_size = 2;
+        "col.active_border" = active;
+        "col.inactive_border" = inactive;
+      };
+      group = {
+        "col.border_active" = active;
+        "col.border_inactive" = inactive;
+        groupbar.font_size = 11;
+      };
+      binds = {
+        movefocus_cycles_fullscreen = false;
+      };
       input = {
         kb_layout = "pl";
       };
+      dwindle = {
+        split_width_multiplier = 1.35;
+        pseudotile = true;
+      };
+      misc = {
+        vfr = true;
+        close_special_on_empty = true;
+        focus_on_activate = true;
+        # Unfullscreen when opening something
+        new_window_takes_over_fullscreen = 2;
+      };
+      windowrulev2 = let
+        sweethome3d-tooltips = "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
+        steam = "title:^()$,class:^(steam)$";
+      in [
+        "nofocus, ${sweethome3d-tooltips}"
+        "stayfocused, ${steam}"
+        "minsize 1 1, ${steam}"
+      ];
+      layerrule = [
+        "animation fade,waybar"
+        "blur,waybar"
+        "ignorezero,waybar"
+        "blur,notifications"
+        "ignorezero,notifications"
+        "blur,wofi"
+        "ignorezero,wofi"
+        "noanim,wallpaper"
+      ];
+
       decoration = {
         active_opacity = 0.97;
         inactive_opacity = 0.77;
