@@ -1,5 +1,4 @@
-{ config, ...}:
-{
+{config, ...}: {
   xdg.mimeApps = {
     associations.added = {
       "x-scheme-handler/terminal" = "kitty.desktop";

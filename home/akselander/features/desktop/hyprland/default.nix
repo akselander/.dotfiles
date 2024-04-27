@@ -12,7 +12,6 @@ in {
     ../common
     ../common/wayland
     ./binds.nix
-
   ];
 
   xdg.portal = {
@@ -79,11 +78,10 @@ in {
 
       bind = let
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
-      in
-        [
-          "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
-          "SUPER,F,exec,firefox"
-	];
+      in [
+        "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
+        "SUPER,F,exec,firefox"
+      ];
     };
   };
 }
