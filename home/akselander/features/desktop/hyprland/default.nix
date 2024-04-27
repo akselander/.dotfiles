@@ -133,12 +133,27 @@ in {
       exec = ["${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"];
 
       bind = let
+        grimblast = lib.getExe pkgs.inputs.hyprwm-contrib.grimblast;
+        tesseract = lib.getExe pkgs.tesseract;
+        notify-send = lib.getExe' pkgs.libnotify "notify-send";
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
       in
         [
           "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
           "SUPER,F,exec,firefox"
+          "SUPER,e,exec,${defaultApp "text/plain"}"
+          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
+          # Screenshotting
+          "ALT,Shift-s,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
         ]
+        ++
+        # Notification manager
+        (
+          let
+            makoctl = lib.getExe' config.services.mako.package "makoctl";
+          in
+            lib.optionals config.services.mako.enable ["SUPER,w,exec,${makoctl} dismiss"]
+        )
         ++
         # Screen lock
         (
