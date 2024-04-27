@@ -12,6 +12,7 @@ in {
     ../common
     ../common/wayland
     ./binds.nix
+    ./hyprbars.nix
   ];
 
   xdg.portal = {
