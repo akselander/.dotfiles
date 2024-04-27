@@ -4,6 +4,7 @@
     ./kitty.nix
     ./swaylock.nix
     ./swayidle.nix
+    ./wofi.nix
   ];
 
   xdg.mimeApps.enable = true;

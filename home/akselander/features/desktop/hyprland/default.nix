@@ -134,22 +134,50 @@ in {
 
       bind = let
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
-      in [
-        "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
-        "SUPER,F,exec,firefox"
-      ]
-      ++
-      # Screen lock
-      (
-        let
-          swaylock = lib.getExe config.programs.swaylock.package;
-        in
-          lib.optionals config.programs.swaylock.enable [
-            ",XF86Launch5,exec,${swaylock} -S --grace 2"
-            ",XF86Launch4,exec,${swaylock} -S --grace 2"
-            "SUPER,backspace,exec,${swaylock} -S --grace 2"
-          ]
-      );
+      in
+        [
+          "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
+          "SUPER,F,exec,firefox"
+        ]
+        ++
+        # Screen lock
+        (
+          let
+            swaylock = lib.getExe config.programs.swaylock.package;
+          in
+            lib.optionals config.programs.swaylock.enable [
+              ",XF86Launch5,exec,${swaylock} -S --grace 2"
+              ",XF86Launch4,exec,${swaylock} -S --grace 2"
+              "SUPER,backspace,exec,${swaylock} -S --grace 2"
+            ]
+        )
+        ++
+        # Launcher
+        (
+          let
+            wofi = lib.getExe config.programs.wofi.package;
+          in
+            lib.optionals config.programs.wofi.enable [
+              "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+              "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
+              "SUPERSHIFT,s,exec,specialisation $(specialisation | shuf -n1)"
+
+              "SUPER,d,exec,${wofi} -S run"
+            ]
+            ++ (
+              let
+                pass-wofi = lib.getExe (pkgs.pass-wofi.override {pass = config.programs.password-store.package;});
+              in
+                lib.optionals config.programs.password-store.enable [
+                  ",Scroll_Lock,exec,${pass-wofi}" # fn+k
+                  ",XF86Calculator,exec,${pass-wofi}" # fn+f12
+                  "SUPER,semicolon,exec,${pass-wofi}"
+                  "SHIFT,Scroll_Lock,exec,${pass-wofi} fill" # fn+k
+                  "SHIFT,XF86Calculator,exec,${pass-wofi} fill" # fn+f12
+                  "SHIFTSUPER,semicolon,exec,${pass-wofi} fill"
+                ]
+            )
+        );
     };
   };
 }
