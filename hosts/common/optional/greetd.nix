@@ -8,6 +8,11 @@
   homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
   vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
 
+  akselanderCfg = homeCfgs.akselander;
+  gtkTheme = akselanderCfg.gtk.theme;
+  iconTheme = akselanderCfg.gtk.iconTheme;
+  wallpaper = akselanderCfg.wallpaper;
+
   sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
     output * bg #000000 solid_color
     xwayland disable
@@ -25,6 +30,16 @@ in {
 
   programs.regreet = {
     enable = true;
+    settings = {
+      GTK = {
+        icon_theme_name = "Papirus";
+        theme_name = gtkTheme.name;
+      };
+      background = {
+        path = wallpaper;
+        fit = "Cover";
+      };
+    };
   };
   services.greetd = {
     enable = true;

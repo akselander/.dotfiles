@@ -9,6 +9,8 @@
     ./features/desktop/hyprland
   ];
 
+  wallpaper = lib.mkDefault pkgs.wallpapers.outer-wilds;
+  colorscheme.source = config.wallpaper;
   #  ------   -----   ------
   # | DP-2 | | DP-1| | DP-3 |
   #  ------   -----   ------

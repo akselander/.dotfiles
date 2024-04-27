@@ -129,6 +129,8 @@ in {
         ];
       };
 
+      exec = ["${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"];
+
       bind = let
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
       in [

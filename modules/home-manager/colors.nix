@@ -18,7 +18,10 @@ in {
   options.colorscheme = {
     source = mkOption {
       type = types.either types.path hexColor;
-      default = "#2B3975";
+      default =
+        if config.wallpaper != null
+        then config.wallpaper
+        else "#2B3975";
     };
     mode = mkOption {
       type = types.enum ["dark" "light"];
