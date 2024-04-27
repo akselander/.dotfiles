@@ -23,6 +23,10 @@
   ''}";
 in {
   users.extraUsers.greeter = {
+    packages = [
+      gtkTheme.package
+      iconTheme.package
+    ];
     # For caching and such
     home = "/tmp/greeter-home";
     createHome = true;

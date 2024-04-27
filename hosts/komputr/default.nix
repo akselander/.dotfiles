@@ -40,6 +40,10 @@
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 
+  programs = {
+    dconf.enable = true;
+  };
+
   hardware = {
     nvidia = {
       prime.offload.enable = false;
