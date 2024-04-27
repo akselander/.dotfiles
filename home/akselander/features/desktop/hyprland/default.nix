@@ -54,6 +54,9 @@ in {
       };
       input = {
         kb_layout = "pl";
+        follow_mouse = 1;
+        force_no_accel = 1;
+        sensitivity = 0.000000;
       };
       dwindle = {
         split_width_multiplier = 1.35;
