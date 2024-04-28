@@ -33,6 +33,11 @@
     };
   };
 
+  ephemereal-root = {
+    enable = true;
+    device = "/dev/nvme0m1";
+  };
+
   # Loads nvidia driver for bothj X and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
