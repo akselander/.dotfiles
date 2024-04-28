@@ -29,14 +29,14 @@
       name = "DP-2";
       width = 2560;
       height = 1440;
-      x = -1920;
+      x = -2560;
       workspace = "2";
     }
     {
       name = "HDMI-A-1";
       width = 3840;
       height = 2160;
-      x = 1920;
+      x = 3840;
       workspace = "3";
       enabled = false;
     }
