@@ -18,7 +18,7 @@
   ];
 
   networking = {
-    hostName = "komputr";
+    hostName = "feldspar";
     networkmanager.enable = true;
   };
 

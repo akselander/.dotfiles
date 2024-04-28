@@ -62,15 +62,15 @@
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
-      komputr = lib.nixosSystem {
+      feldspar = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/komputr];
+        modules = [./hosts/feldspar];
       };
     };
 
     homeConfigurations = {
-      "akselander@komputr" = lib.homeManagerConfiguration {
-        modules = [./home/akselander/komputr.nix];
+      "akselander@feldspar" = lib.homeManagerConfiguration {
+        modules = [./home/akselander/feldspar.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
