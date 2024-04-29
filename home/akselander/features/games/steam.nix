@@ -56,6 +56,9 @@
       "--output-height ${toString tv.height}"
       "--framerate-limit ${toString tv.refreshRate}"
       "--prefer-output ${tv.name}"
+      "--adaptive-sync"
+      "--expose-wayland"
+      "--hdr-enabled"
       "--steam"
     ];
     steam = lib.concatStringsSep " " [
