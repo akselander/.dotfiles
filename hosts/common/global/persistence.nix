@@ -9,7 +9,6 @@
   environment.persistence = {
     "/persist" = {
       directories = [
-        "/etc/nixos"
         "/var/log"
         "/var/lib/bluetooth"
         "/var/lib/nixos"

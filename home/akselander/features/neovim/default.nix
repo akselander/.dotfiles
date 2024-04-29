@@ -51,4 +51,8 @@ in {
     require("akselander")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
+
+  home.persistence = {
+    "/persist/home/akselander".directories = [".local/share/nvim"];
+  };
 }

@@ -11,7 +11,7 @@
       ./fish.nix
       ./locale.nix
       ./nix.nix
-      ./persistance.nix
+      ./persistence.nix
       ./steam-hardware.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
