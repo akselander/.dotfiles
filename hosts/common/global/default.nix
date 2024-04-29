@@ -29,6 +29,7 @@
 
   environment.systemPackages = with pkgs; [
     gcc
+    gnumake
   ];
 
   hardware.enableRedistributableFirmware = true;

@@ -41,10 +41,33 @@
     ];
   in
     pkgs.writeTextDir "share/wayland-sessions/steam-session.desktop" # ini
-    
+
     ''
       [Desktop Entry]
       Name=Steam Session
+      Exec=${gamescope} -- ${steam}
+      Type=Application
+    '';
+  tv = lib.head (lib.filter (m: m.tv) config.monitors);
+  steam-tv-session = let
+    gamescope = lib.concatStringsSep " " [
+      (lib.getExe pkgs.gamescope)
+      "--output-width ${toString tv.width}"
+      "--output-height ${toString tv.height}"
+      "--framerate-limit ${toString tv.refreshRate}"
+      "--prefer-output ${tv.name}"
+      "--steam"
+    ];
+    steam = lib.concatStringsSep " " [
+      "steam"
+      "steam://open/bigpicture"
+    ];
+  in
+    pkgs.writeTextDir "share/wayland-sessions/steam-tv-session.desktop" # ini
+
+    ''
+      [Desktop Entry]
+      Name=Steam TV Session
       Exec=${gamescope} -- ${steam}
       Type=Application
     '';
@@ -52,6 +75,7 @@ in {
   home.packages = with pkgs; [
     steam-with-pkgs
     steam-session
+    steam-tv-session
     gamescope
     mangohud
     protontricks
