@@ -8,6 +8,7 @@
 }: {
   imports =
     [
+      inputs.impermanence.nixosModules.home-manager.impermanence
       ../features/cli
       ../features/neovim
     ]
@@ -43,6 +44,21 @@
     username = lib.mkDefault "akselander";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "23.11";
+
+    persistence = {
+      "/persist/home/akselander" = {
+        directories = [
+          "Documents"
+          "Downloads"
+          "Pictures"
+          "Videos"
+          ".dotfiles"
+          ".local/bin"
+          ".local/share/nix" # trusted settings and repl history
+        ];
+        allowOther = true;
+      };
+    };
   };
 
   colorscheme.mode = lib.mkOverride 1499 "dark";

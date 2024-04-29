@@ -11,6 +11,7 @@
       ./fish.nix
       ./locale.nix
       ./nix.nix
+      ./persistance.nix
       ./steam-hardware.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
@@ -25,6 +26,10 @@
       allowUnfree = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    gcc
+  ];
 
   hardware.enableRedistributableFirmware = true;
 }

@@ -41,7 +41,7 @@
     ];
   in
     pkgs.writeTextDir "share/wayland-sessions/steam-session.desktop" # ini
-    
+
     ''
       [Desktop Entry]
       Name=Steam Session
@@ -56,4 +56,16 @@ in {
     mangohud
     protontricks
   ];
+  home.persistence = {
+    "/persist/home/akselander" = {
+      allowOther = true;
+      directories = [
+        {
+          # A couple of games don't play well with bindfs
+          directory = ".local/share/Steam";
+          method = "symlink";
+        }
+      ];
+    };
+  };
 }
