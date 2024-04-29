@@ -1,4 +1,7 @@
-{device ? throw "Set this to your disk device, e.g. /dev/sda", ...}: {
+{
+  device ? throw "Set this to your disk device, e.g. /dev/sda",
+  ...
+}: {
   disko.devices = {
     disk.main = {
       inherit device;
@@ -13,7 +16,7 @@
           };
           esp = {
             name = "ESP";
-            size = "1G";
+            size = "500M";
             type = "EF00";
             content = {
               type = "filesystem";
@@ -22,7 +25,7 @@
             };
           };
           swap = {
-            size = "16G";
+            size = "4G";
             content = {
               type = "swap";
               resumeDevice = true;
@@ -33,14 +36,14 @@
             size = "100%";
             content = {
               type = "lvm_pv";
-              vg = "btrfs_vg";
+              vg = "root_vg";
             };
           };
         };
       };
     };
     lvm_vg = {
-      btrfs_vg = {
+      root_vg = {
         type = "lvm_vg";
         lvs = {
           root = {

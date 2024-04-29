@@ -7,8 +7,10 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
-
     ./hardware-configuration.nix
+    inputs.disko.nixosModules.default
+    (import ./disko.nix { device = "/dev/nvme0n1"; })
+
     ../common/global
     ../common/users/akselander
 
@@ -31,11 +33,6 @@
       };
       efi.canTouchEfiVariables = true;
     };
-  };
-
-  ephemereal-root = {
-    enable = true;
-    device = "/dev/nvme0m1";
   };
 
   # Loads nvidia driver for bothj X and Wayland
