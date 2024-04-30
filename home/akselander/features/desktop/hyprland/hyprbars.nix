@@ -24,8 +24,8 @@ in {
     settings = {
       "plugin:hyprbars" = {
         bar_height = 25;
-        bar_color = "rgba(${config.colorScheme.colors.base00}ff)";
-        "col.text" = "rgba(${config.colorScheme.colors.base05}ff)";
+        bar_color = "rgb(${config.colorScheme.colors.base00})";
+        "col.text" = "rgb(${config.colorScheme.colors.base05})";
         bar_text_font = config.fontProfiles.regular.family;
         bar_text_size = 12;
         bar_part_of_window = true;

@@ -417,8 +417,8 @@ in {
           border-radius: 0.5em;
         }
         #custom-menu.fullscreen {
-          background-color: ${toRGBA {color = colors.base03;}};
-          color: ${toRGBA {color = colors.base07;}};
+          background-color: ${toRGBA {color = colors.base0B;}};
+          color: ${toRGBA {color = colors.base0A;}};
         }
         #custom-hostname {
           padding-right: 1em;

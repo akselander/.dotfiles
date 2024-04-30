@@ -231,7 +231,8 @@ in {
           "$mainMod,b,exec,${defaultApp "x-scheme-handler/https"}"
           "$mainMod, D, exec, rofi -show drun -show-icons"
           # Screenshotting
-          "$mainMod,S,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
+          "$mainMod_SHIFT,S,exec,${grimblast} --notify --freeze copy area"
+          "$mainMod_SHIFT,X,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
         ]
         ++
         # Screen lock

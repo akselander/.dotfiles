@@ -9,6 +9,7 @@
   vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
 
   akselanderCfg = homeCfgs.akselander;
+  colorScheme = akselanderCfg.colorScheme;
   gtkTheme = akselanderCfg.gtk.theme;
   iconTheme = akselanderCfg.gtk.iconTheme;
   wallpaper = akselanderCfg.wallpaper;
@@ -44,6 +45,15 @@ in {
         fit = "Cover";
       };
     };
+    extraCss = with colorScheme.colors; ''
+      @define-color theme_bg_color #${base00};
+      .suggested-action {
+          background-color: #${base0D};
+      }
+      .suggested-action {
+          background-color: #${base08};
+      }
+    '';
   };
   services.greetd = {
     enable = true;
