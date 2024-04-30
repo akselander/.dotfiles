@@ -36,7 +36,7 @@ in {
           patches = [
             (
               builtins.toFile "fix-complete.diff" # diff
-              
+
               ''
                 diff --git a/completions/aws.fish b/completions/aws.fish
                 index fc75188..1e8d931 100644
@@ -100,7 +100,7 @@ in {
     };
     functions = {
       # Disable greeting
-      fish_greeting = "";
+      fish_greeting = "neofetch";
       # Grep using ripgrep and pass to nvim
       nvimrg = mkIf (hasNeovim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
       # Merge history upon doing up-or-search
@@ -130,7 +130,7 @@ in {
       # Integrate ssh with shellcolord
       ssh =
         mkIf hasShellColor # fish
-        
+
         ''
           ${shellcolor} disable $fish_pid
           # Check if kitty is available
