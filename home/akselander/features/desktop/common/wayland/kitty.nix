@@ -15,46 +15,67 @@ in {
       name = config.fontProfiles.monospace.family;
       size = 12;
     };
-    settings = {
-      shell_integration = "no-rc"; # I prefer to do it manually
-      scrollback_lines = 4000;
-      scrollback_pager_history_size = 2048;
-      window_padding_width = 15;
-      foreground = "${colors.on_surface}";
-      background = "${colors.surface}";
-      selection_background = "${colors.on_surface}";
-      selection_foreground = "${colors.surface}";
-      url_color = "${colors.on_surface_variant}";
-      cursor = "${colors.on_surface}";
-      active_border_color = "${colors.outline}";
-      inactive_border_color = "${colors.surface_bright}";
-      active_tab_background = "${colors.surface}";
-      active_tab_foreground = "${colors.on_surface}";
-      inactive_tab_background = "${colors.surface_bright}";
-      inactive_tab_foreground = "${colors.on_surface_variant}";
-      tab_bar_background = "${colors.surface_bright}";
-      color0 = "${colors.surface}";
-      color1 = "${harmonized.red}";
-      color2 = "${harmonized.green}";
-      color3 = "${harmonized.yellow}";
-      color4 = "${harmonized.blue}";
-      color5 = "${harmonized.magenta}";
-      color6 = "${harmonized.cyan}";
-      color7 = "${colors.on_surface}";
-      color8 = "${colors.outline}";
-      color9 = "${harmonized.red}";
-      color10 = "${harmonized.green}";
-      color11 = "${harmonized.yellow}";
-      color12 = "${harmonized.blue}";
-      color13 = "${harmonized.magenta}";
-      color14 = "${harmonized.cyan}";
-      color15 = "${colors.surface_dim}";
-      color16 = "${harmonized.orange}";
-      color17 = "${colors.error}";
-      color18 = "${colors.surface_bright}";
-      color19 = "${colors.surface_container}";
-      color20 = "${colors.on_surface_variant}";
-      color21 = "${colors.inverse_surface}";
+    settings = with config.colorScheme.colors; {
+      enable_audio_bell = "no";
+
+      cursor = "#${base06}";
+      cursor_text_color = "background";
+
+      url_color = "#${base0D}";
+
+      visual_bell_color = "#${base0C}";
+      bell_border_color = "#${base0C}";
+
+      active_border_color = "#${base0E}";
+      inactive_border_color = "#${base03}";
+
+      foreground = "#${base06}";
+      background = "#${base00}";
+      selection_foreground = "#${base02}";
+      selection_background = "#${base06}";
+
+      active_tab_foreground = "#${base06}";
+      active_tab_background = "#${base03}";
+      inactive_tab_foreground = "#${base04}";
+      inactive_tab_background = "#${base01}";
+
+      # = "black  (bg3/bg4)";
+      color0 = "#${base03}";
+      color8 = "#${base04}";
+
+      # = "red";
+      color1 = "#${base08}";
+      color9 = "#${base08}";
+
+      #: = "green";
+      color2 = "#${base0B}";
+      color10 = "#${base0B}";
+
+      # = "yellow";
+      color3 = "#${base0A}";
+      color11 = "#${base0A}";
+
+      # = "blue";
+      color4 = "#${base0D}";
+      color12 = "#${base0D}";
+
+      # = "purple";
+      color5 = "#${base0E}";
+      color13 = "#${base0E}";
+
+      # = "aqua";
+      color6 = "#${base0C}";
+      color14 = "#${base0C}";
+
+      # = "white (fg4/fg3)";
+      color7 = "#${base05}";
+      color15 = "#${base06}";
+
+      # scrollback_pager = ''nvim -c "set signcolumn=no showtabline=0" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - "'';
+
+      allow_remote_control = "yes";
+      listen_on = "unix:/tmp/kitty";
+      shell_integration = "enabled";
     };
   };
 }

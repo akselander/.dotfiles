@@ -1,32 +1,41 @@
-{config, ...}: let
-  inherit (config.colorscheme) colors;
-in {
-  programs.zathura = {
-    enable = true;
-    options = {
-      selection-clipboard = "clipboard";
-      font = "${config.fontProfiles.regular.family} 12";
-      recolor = true;
-      default-bg = "${colors.surface}";
-      default-fg = "${colors.surface_bright}";
-      statusbar-bg = "${colors.surface_container}";
-      statusbar-fg = "${colors.on_surface_variant}";
-      inputbar-bg = "${colors.surface}";
-      inputbar-fg = "${colors.on_secondary}";
-      notification-bg = "${colors.surface}";
-      notification-fg = "${colors.on_secondary}";
-      notification-error-bg = "${colors.error}";
-      notification-error-fg = "${colors.on_error}";
-      notification-warning-bg = "${colors.error}";
-      notification-warning-fg = "${colors.on_error}";
-      highlight-color = "${colors.tertiary}";
-      highlight-active-color = "${colors.secondary}";
-      completion-bg = "${colors.surface_bright}";
-      completion-fg = "${colors.on_surface}";
-      completions-highlight-bg = "${colors.secondary}";
-      completions-highlight-fg = "${colors.on_secondary}";
-      recolor-lightcolor = "${colors.surface}";
-      recolor-darkcolor = "${colors.inverse_surface}";
+{config, ...}: {
+  config = {
+    programs.zathura = {
+      enable = true;
+      options = with config.colorScheme.colors; {
+        default-bg = "#${base00}";
+        default-fg = "#${base04}";
+
+        statusbar-fg = "#${base02}";
+        statusbar-bg = "#${base01}";
+
+        inputbar-bg = "#${base00}";
+        inputbar-fg = "#${base04}";
+
+        notification-bg = "#${base00}";
+        notification-fg = "#${base04}";
+
+        notification-error-bg = "#${base00}";
+        notification-error-fg = "#${base08}";
+
+        notification-warning-bg = "#${base00}";
+        notification-warning-fg = "#${base08}";
+
+        highlight-color = "#${base0A}";
+        highlight-active-color = "#${base0D}";
+
+        completion-bg = "#${base03}";
+        completion-fg = "#${base0D}";
+
+        completion-highlight-fg = "#${base04}";
+        completion-highlight-bg = "#${base0D}";
+
+        recolor-lightcolor = "#${base00}";
+        recolor-darkcolor = "#${base04}";
+
+        recolor = "false";
+        recolor-keephue = "false";
+      };
     };
   };
 }

@@ -1,11 +1,10 @@
 {pkgs, ...}: {
   imports = [
     ./kitty.nix
-    ./mako.nix
     ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
-    ./wofi.nix
+    ./rofi.nix
     ./zathura.nix
     ./imv.nix
   ];

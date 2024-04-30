@@ -18,10 +18,6 @@ in {
             type = types.bool;
             default = false;
           };
-          tv = mkOption {
-            type = types.bool;
-            default = false;
-          };
           width = mkOption {
             type = types.int;
             example = 1920;
@@ -31,8 +27,8 @@ in {
             example = 1080;
           };
           refreshRate = mkOption {
-            type = types.str;
-            default = "60.00";
+            type = types.float;
+            default = 60;
           };
           x = mkOption {
             type = types.int;
