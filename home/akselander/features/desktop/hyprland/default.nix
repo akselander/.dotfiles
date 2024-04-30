@@ -59,19 +59,40 @@ in {
         "col.active_border" = "rgba(${config.colorScheme.colors.base0E}ff) rgba(${config.colorScheme.colors.base09}ff) 60deg";
         "col.inactive_border" = "rgba(${config.colorScheme.colors.base00}ff)";
       };
-      monitor =
-        map
-        (
-          m: let
-            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-            position = "${toString m.x}x${toString m.y}";
-          in "${m.name},${
+
+      monitor = let
+        inherit (config.wayland.windowManager.hyprland.settings.general) gaps_in gaps_out;
+        gap = gaps_out - gaps_in;
+        inherit (config.programs.waybar.settings.primary) position height width;
+        waybarSpace = {
+          top =
+            if (position == "top")
+            then height + gap
+            else 0;
+          bottom =
+            if (position == "bottom")
+            then height + gap
+            else 0;
+          left =
+            if (position == "left")
+            then width + gap
+            else 0;
+          right =
+            if (position == "right")
+            then width + gap
+            else 0;
+        };
+      in
+        [
+          ",addreserved,${toString waybarSpace.top},${toString waybarSpace.bottom},${toString waybarSpace.left},${toString waybarSpace.right}"
+        ]
+        ++ (map (
+          m: "${m.name},${
             if m.enabled
-            then "${resolution},${position},1"
+            then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1"
             else "disable"
           }"
-        )
-        (config.monitors);
+        ) (config.monitors));
 
       workspace =
         map

@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   imports = [
     ./kitty.nix
+    ./imv.nix
     ./swayidle.nix
     ./swaylock.nix
-    ./waybar.nix
     ./rofi.nix
+    ./waybar.nix
     ./zathura.nix
-    ./imv.nix
   ];
 
   xdg.mimeApps.enable = true;

@@ -179,7 +179,8 @@
         text-color: @normal-foreground;
     }
     * {
-        font: "JetBrains Mono Nerd Font 16px";
+       font-family: "${config.fontProfiles.regular.family}", "${config.fontProfiles.monospace.family}";
+       font-size: 16px;
     }
 
     /*****----- Main Window -----*****/
