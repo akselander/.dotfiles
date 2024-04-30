@@ -3,7 +3,7 @@
 
   home = {
     persistence = {
-      "/persist/home/akselander".directories = [".mozzila" ".cache/mozilla"];
+      "/persist/home/akselander".directories = [".mozilla" ".cache/mozilla"];
     };
   };
 }
