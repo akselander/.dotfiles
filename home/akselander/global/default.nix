@@ -44,10 +44,19 @@
     username = lib.mkDefault "akselander";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "23.11";
+    sessionVariables = {
+      FLAKE = "$HOME/.dotfiles";
+    };
 
     persistence = {
       "/persist/home/akselander" = {
         directories = [
+          ".dotfiles"
+          "Documents"
+          "Downloads"
+          "Pictures"
+          "Videos"
+          ".local/bin"
           ".local/share/nix" # trusted settings and repl history
         ];
         allowOther = true;
