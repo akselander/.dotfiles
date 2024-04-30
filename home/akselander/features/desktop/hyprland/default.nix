@@ -50,14 +50,22 @@ in {
         "systemctl --user start hyprland-session.target"
       ];
     };
-    settings = {
+    settings = let
+      active = "rgba(${config.colorscheme.colors.base0A}ff) rgba(${config.colorscheme.colors.base0B}ff) 60deg";
+      inactive = "rgba(${config.colorscheme.colors.base03}ff)";
+    in {
       general = {
         cursor_inactive_timeout = 4;
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 15;
+        gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgba(${config.colorScheme.colors.base0A}ff) rgba(${config.colorScheme.colors.base0B}ff) 60deg";
-        "col.inactive_border" = "rgba(${config.colorScheme.colors.base03}ff)";
+        "col.active_border" = active;
+        "col.inactive_border" = inactive;
+      };
+      group = {
+        "col.border_active" = active;
+        "col.border_inactive" = inactive;
+        groupbar.font_size = 11;
       };
 
       monitor = let
@@ -137,40 +145,75 @@ in {
         sensitivity = 0.000000;
       };
 
-      decoration = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-        rounding = 5;
-
-        drop_shadow = true;
-        shadow_range = 30;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
-      };
-
-      animations = {
-        enabled = true;
-
-        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
-        bezier = "myBezier, 0.25, 0.9, 0.1, 1.02";
-
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          # "workspaces, 1, 3, default, slidevert"
-          # "workspaces, 1, 3, myBezier, slidefadevert"
-          "workspaces, 1, 3, myBezier, fade"
-        ];
-      };
-
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+        split_width_multiplier = 1.35;
         pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
+      };
+      windowrulev2 = let
+        steam = "title:^()$,class:^(steam)$";
+      in [
+        "stayfocused, ${steam}"
+        "minsize 1 1, ${steam}"
+      ];
+      layerrule = [
+        "animation fade,waybar"
+        "blur,waybar"
+        "ignorezero,waybar"
+        "blur,notifications"
+        "ignorezero,notifications"
+        "blur,rofi"
+        "ignorezero,rofi"
+        "noanim,wallpaper"
+      ];
+
+      decoration = {
+        active_opacity = 0.97;
+        inactive_opacity = 0.77;
+        fullscreen_opacity = 1.0;
+        rounding = 7;
+        blur = {
+          enabled = true;
+          size = 5;
+          passes = 3;
+          new_optimizations = true;
+          ignore_opacity = true;
+          popups = true;
+        };
+        drop_shadow = true;
+        shadow_range = 12;
+        shadow_offset = "3 3";
+        "col.shadow" = "0x44000000";
+        "col.shadow_inactive" = "0x66000000";
+      };
+      animations = {
+        enabled = true;
+        bezier = [
+          "easein,0.11, 0, 0.5, 0"
+          "easeout,0.5, 1, 0.89, 1"
+          "easeinout,0.45, 0, 0.55, 1"
+          "easeinback,0.36, 0, 0.66, -0.56"
+          "easeoutback,0.34, 1.56, 0.64, 1"
+          "easeinoutback,0.68, -0.6, 0.32, 1.6"
+        ];
+
+        animation = [
+          "border,1,3,easeout"
+          "workspaces,1,2,easeoutback,slide"
+          "windowsIn,1,3,easeoutback,slide"
+          "windowsOut,1,3,easeinback,slide"
+          "windowsMove,1,3,easeoutback"
+          "fadeIn,1,3,easeout"
+          "fadeOut,1,3,easein"
+          "fadeSwitch,1,3,easeinout"
+          "fadeShadow,1,3,easeinout"
+          "fadeDim,1,3,easeinout"
+          "fadeLayersIn,1,3,easeoutback"
+          "fadeLayersOut,1,3,easeinback"
+          "layersIn,1,3,easeoutback,slide"
+          "layersOut,1,3,easeinback,slide"
+        ];
       };
 
       exec = ["${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"];
