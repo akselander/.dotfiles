@@ -399,8 +399,8 @@ in {
         }
         #workspaces button.focused,
         #workspaces button.active {
-          background-color: ${toRGBA {color = colors.base02;}};
-          color: ${toRGBA {color = colors.base06;}};
+          background-color: ${toRGBA {color = colors.base0A;}};
+          color: ${toRGBA {color = colors.base07;}};
         }
 
         #clock {
