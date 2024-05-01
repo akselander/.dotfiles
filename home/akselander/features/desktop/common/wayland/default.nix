@@ -2,6 +2,7 @@
   imports = [
     ./kitty.nix
     ./imv.nix
+    ./mako.nix
     ./swayidle.nix
     ./swaylock.nix
     ./rofi.nix

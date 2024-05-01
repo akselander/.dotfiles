@@ -235,6 +235,14 @@ in {
           "$mainMod_SHIFT,X,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
         ]
         ++
+        # Notification manager
+        (
+          let
+            makoctl = lib.getExe' config.services.mako.package "makoctl";
+          in
+            lib.optionals config.services.mako.enable ["$mainMod,w,exec,${makoctl} dismiss"]
+        )
+        ++
         # Screen lock
         (
           let
@@ -243,7 +251,7 @@ in {
             lib.optionals config.programs.swaylock.enable [
               ",XF86Launch5,exec,${swaylock} -S --grace 2"
               ",XF86Launch4,exec,${swaylock} -S --grace 2"
-              "SUPER,backspace,exec,${swaylock} -S --grace 2"
+              "$mainMod,backspace,exec,${swaylock} -S --grace 2"
             ]
         );
     };
