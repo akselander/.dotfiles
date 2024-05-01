@@ -36,7 +36,6 @@
     };
   };
 
-  boot.kernelModules = ["v4l2loopback"];
   # Loads nvidia driver for bothj X and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
