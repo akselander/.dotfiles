@@ -1,5 +1,9 @@
 {config, ...}: {
   config = {
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = ["zathura"];
+    };
+
     programs.zathura = {
       enable = true;
       options = with config.colorScheme.colors; {
