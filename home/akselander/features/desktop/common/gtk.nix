@@ -6,14 +6,14 @@
 }: rec {
   gtk.enable = true;
 
-  gtk.theme.package = pkgs.rose-pine-gtk-theme;
-  gtk.theme.name = "rose-pine";
+  gtk.theme.package = pkgs.rose-pine-gtk;
+  gtk.theme.name = "RosePine-Main-BL";
 
   gtk.cursorTheme.package = pkgs.bibata-cursors;
   gtk.cursorTheme.name = "Bibata-Modern-Ice";
 
-  gtk.iconTheme.package = pkgs.rose-pine-icon-theme;
-  gtk.iconTheme.name = "rose-pine";
+  gtk.iconTheme.package = pkgs.rose-pine-gtk;
+  gtk.iconTheme.name = "RosePine";
 
   services.xsettingsd = {
     enable = true;
