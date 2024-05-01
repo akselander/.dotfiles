@@ -44,6 +44,10 @@ in
       runHook preInstall
 
       mkdir -p $out/share/{icons,themes}
+      mkdir $out/share/icons/${iconTheme}
+      mkdir $out/share/icons/${iconTheme}/actions
+      mkdir $out/share/icons/${iconTheme}/actions/symbolic
+      cp $src/icons/${iconTheme}/actions/symbolic/edit-symbolic.svg $out/share/icons/${iconTheme}/actions/symbolic/document-edit-symbolic.svg
 
       cp -r $src/themes/${gtkTheme} $out/share/themes
       cp -r $src/icons/${iconTheme} $out/share/icons

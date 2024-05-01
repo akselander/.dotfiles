@@ -3,7 +3,7 @@
 in {
   services.mako = {
     enable = true;
-    iconPath = "${config.gtk.iconTheme.package}";
+    iconPath = "${config.gtk.iconTheme.package}/share/icons/${config.gtk.iconTheme.name}";
     font = "${config.fontProfiles.regular.family} 12";
     padding = "10,20";
     anchor = "top-center";
