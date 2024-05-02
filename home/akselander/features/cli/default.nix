@@ -16,7 +16,7 @@
     alejandra # Nix formatter
     nvd
     nix-output-monitor
-    neofetch
+    fastfetch
     nh # Nice wrapper for NixOS and HM
     awscli2
     inputs.awscli-console.default
