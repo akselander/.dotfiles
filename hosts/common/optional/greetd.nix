@@ -37,7 +37,7 @@ in {
     enable = true;
     settings = {
       GTK = {
-        icon_theme_name = "Papirus";
+        icon_theme_name = iconTheme.name;
         theme_name = gtkTheme.name;
       };
       background = {
@@ -45,15 +45,6 @@ in {
         fit = "Cover";
       };
     };
-    extraCss = with colorScheme.colors; ''
-      @define-color theme_bg_color #${base00};
-      .suggested-action {
-          background-color: #${base0D};
-      }
-      .suggested-action {
-          background-color: #${base08};
-      }
-    '';
   };
   services.greetd = {
     enable = true;
