@@ -46,6 +46,7 @@
   swayCfg = config.wayland.windowManager.sway;
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in {
+  home.packages = with pkgs; [rofi-bluetooth];
   # Let it try to start a few more times
   systemd.user.services.waybar = {
     Unit.StartLimitBurst = 30;
@@ -142,12 +143,13 @@ in {
             Down: {bandwidthDownBits}'';
         };
         bluetooth = {
-          format = "asd";
+          format = "";
           format-connected = " {num_connections}";
-          format-disabled = "asdf";
+          format-disabled = "";
           tooltip-format = " {device_alias}";
           tooltip-format-connected = "{device_enumerate}";
           tooltip-format-enumerate-connected = " {device_alias}";
+          on-click = lib.getExe pkgs.rofi-bluetooth;
         };
         "custom/menu" = {
           interval = 1;
