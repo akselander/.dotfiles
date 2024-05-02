@@ -43,7 +43,7 @@
       height = 2160;
       x = 3840;
       workspace = "3";
-      enabled = false;
+      enabled = true;
       tv = true;
     }
   ];
