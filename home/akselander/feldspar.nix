@@ -10,6 +10,7 @@
     ./global
     ./features/desktop/hyprland
     ./features/games
+    ./features/games/steam-session.nix
   ];
 
   wallpaper = lib.mkDefault pkgs.wallpapers.outer-wilds;
@@ -43,6 +44,7 @@
       x = 3840;
       workspace = "3";
       enabled = false;
+      tv = true;
     }
   ];
 }
