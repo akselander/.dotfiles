@@ -72,11 +72,7 @@ in {
           ++ (lib.optionals hyprlandCfg.enable [
             "hyprland/workspaces"
             "hyprland/submap"
-          ])
-          ++ [
-            "custom/currentplayer"
-            "custom/player"
-          ];
+          ]);
 
         modules-center = [
           "cpu"
@@ -84,14 +80,10 @@ in {
           "memory"
           "clock"
           "pulseaudio"
-          "battery"
-          "custom/unread-mail"
-          "custom/gpg-agent"
         ];
 
         modules-right = [
-          # "custom/gammastep" TODO: currently broken for some reason
-          "custom/rfkill"
+          "bluetooth"
           "network"
           "tray"
           "custom/hostname"
@@ -135,32 +127,6 @@ in {
           };
           on-click = lib.getExe pkgs.pavucontrol;
         };
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "󰒳";
-            deactivated = "󰒲";
-          };
-        };
-        battery = {
-          bat = "BAT0";
-          interval = 10;
-          format-icons = [
-            "󰁺"
-            "󰁻"
-            "󰁼"
-            "󰁽"
-            "󰁾"
-            "󰁿"
-            "󰂀"
-            "󰂁"
-            "󰂂"
-            "󰁹"
-          ];
-          format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          onclick = "";
-        };
         "sway/window" = {
           max-length = 20;
         };
@@ -174,6 +140,14 @@ in {
             {ipaddr}/{cidr}
             Up: {bandwidthUpBits}
             Down: {bandwidthDownBits}'';
+        };
+        bluetooth = {
+          format = "asd";
+          format-connected = " {num_connections}";
+          format-disabled = "asdf";
+          tooltip-format = " {device_alias}";
+          tooltip-format-connected = "{device_enumerate}";
+          tooltip-format-enumerate-connected = " {device_alias}";
         };
         "custom/menu" = {
           interval = 1;
@@ -193,155 +167,6 @@ in {
         "custom/hostname" = {
           exec = mkScript {script = ''echo "$USER@$HOSTNAME"'';};
           on-click = mkScript {script = "systemctl --user restart waybar";};
-        };
-        "custom/unread-mail" = {
-          interval = 5;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [pkgs.findutils pkgs.procps];
-            pre = ''
-              count=$(find ~/Mail/*/Inbox/new -type f | wc -l)
-              if pgrep mbsync &>/dev/null; then
-                status="syncing"
-              else
-                if [ "$count" == "0" ]; then
-                  status="read"
-                else
-                  status="unread"
-                fi
-              fi
-            '';
-            text = "$count";
-            alt = "$status";
-          };
-          format = "{icon}  ({})";
-          format-icons = {
-            "read" = "󰇯";
-            "unread" = "󰇮";
-            "syncing" = "󰁪";
-          };
-        };
-        "custom/gpg-agent" = {
-          interval = 2;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [pkgs.procps pkgs.gnupg];
-            pre = let
-              isUnlocked = "pgrep 'gpg-agent' &> /dev/null && gpg-connect-agent 'scd getinfo card_list' /bye | grep SERIALNO -q";
-            in ''status=$(${isUnlocked} && echo "unlocked" || echo "locked")'';
-            alt = "$status";
-            tooltip = "GPG is $status";
-          };
-          format = "{icon}";
-          format-icons = {
-            "locked" = "";
-            "unlocked" = "";
-          };
-        };
-        "custom/gammastep" = {
-          interval = 5;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [pkgs.findutils];
-            pre = ''
-              if unit_status="$(systemctl --user is-active gammastep)"; then
-                period="$(journalctl --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs)"
-                status="$unit_status ($period)"
-              else
-                status="$unit_status"
-              fi
-            '';
-            alt = "\${status:-inactive}";
-            tooltip = "Gammastep is $status";
-          };
-          format = "{icon}";
-          format-icons = {
-            "activating" = "󰁪 ";
-            "deactivating" = "󰁪 ";
-            "inactive" = "? ";
-            "active (Night)" = " ";
-            "active (Nighttime)" = " ";
-            "active (Transition (Night)" = " ";
-            "active (Transition (Nighttime)" = " ";
-            "active (Day)" = " ";
-            "active (Daytime)" = " ";
-            "active (Transition (Day)" = " ";
-            "active (Transition (Daytime)" = " ";
-          };
-          on-click = mkScript {
-            script = ''
-              if systemctl --user is-active gammastep; then
-                systemctl --user stop gammastep
-              else
-                systemctl --user start gammastep
-              fi
-            '';
-          };
-        };
-        "custom/currentplayer" = {
-          interval = 2;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [pkgs.playerctl];
-            pre = ''
-              player="$(playerctl status -f "{{playerName}}" 2>/dev/null || echo "No player active" | cut -d '.' -f1)"
-              count="$(playerctl -l 2>/dev/null | wc -l)"
-              if ((count > 1)); then
-                more=" +$((count - 1))"
-              else
-                more=""
-              fi
-            '';
-            alt = "$player";
-            tooltip = "$player ($count available)";
-            text = "$more";
-          };
-          format = "{icon}{}";
-          format-icons = {
-            "No player active" = " ";
-            "Celluloid" = "󰎁 ";
-            "spotify" = "󰓇 ";
-            "ncspot" = "󰓇 ";
-            "qutebrowser" = "󰖟 ";
-            "firefox" = " ";
-            "discord" = " 󰙯 ";
-            "sublimemusic" = " ";
-            "kdeconnect" = "󰄡 ";
-            "chromium" = " ";
-          };
-        };
-        "custom/rfkill" = {
-          interval = 1;
-          exec-if = mkScript {
-            deps = [pkgs.util-linux];
-            script = "rfkill | grep '\<blocked\>'";
-          };
-        };
-        "custom/player" = {
-          exec-if = mkScript {
-            deps = [pkgs.playerctl];
-            script = "playerctl status 2>/dev/null";
-          };
-          exec = let
-            format = ''{"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}'';
-          in
-            mkScript {
-              deps = [pkgs.playerctl];
-              script = "playerctl metadata --format '${format}' 2>/dev/null";
-            };
-          return-type = "json";
-          interval = 2;
-          max-length = 30;
-          format = "{icon} {}";
-          format-icons = {
-            "Playing" = "󰐊";
-            "Paused" = "󰏤 ";
-            "Stopped" = "󰓛";
-          };
-          on-click = mkScript {
-            deps = [pkgs.playerctl];
-            script = "playerctl play-pause";
-          };
         };
       };
     };
