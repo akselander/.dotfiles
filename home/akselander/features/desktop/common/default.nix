@@ -9,6 +9,7 @@
     ./firefox.nix
     ./font.nix
     ./gtk.nix
+    ./telegram.nix
   ];
 
   # Also sets org.freedesktop.appearance color-scheme
