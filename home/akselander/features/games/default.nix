@@ -4,18 +4,10 @@
   };
 
   home.packages = with pkgs; [
-    lutris
     steam
-    steam-run
     protonup-ng
-    gamemode
-    dxvk
-
-    gamescope
-
-
-    steamPackages.steam-runtime
   ];
+
   home = {
     persistence = {
       "/persist/home/akselander" = {
