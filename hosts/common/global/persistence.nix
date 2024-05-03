@@ -13,6 +13,7 @@
         "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
+        "/var/cache/regreet"
         "/etc/NetworkManager/system-connections"
       ];
     };
