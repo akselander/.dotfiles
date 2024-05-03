@@ -28,10 +28,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelParams = [
-      "nvidia_drm.fbdev=1"
-      "nvidia_drm.modesedt=1"
-    ];
     loader = {
       systemd-boot = {
         enable = true;
