@@ -48,8 +48,6 @@
     dconf.enable = true;
   };
 
-  programs.steam.gamescopeSession.enable = true;
-
   hardware = {
     nvidia = {
       prime.offload.enable = false;

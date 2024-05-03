@@ -5,6 +5,7 @@
   };
 
   home.packages = with pkgs; [
+    gamescope
     steam
     protonup-ng
   ];
