@@ -17,7 +17,7 @@
     ../common/optional/nuke-root.nix
     ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
-    ../common/optional/quietboot.nix
+    # ../common/optional/quietboot.nix
     ../common/optional/bluetooth.nix
   ];
 
@@ -28,10 +28,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelParams = [
-      "nvidia_drm.fbdev=1"
-      "nvidia_drm.modesedt=1"
-    ];
     loader = {
       systemd-boot = {
         enable = true;
