@@ -5,7 +5,6 @@
   gtk-engine-murrine,
   jdupes,
   themeVariant ? [],
-  iconVariant ? [],
 }: let
   inherit (builtins) toString;
   inherit (lib.trivial) checkListOfEnum;
@@ -17,11 +16,6 @@ in
     "Main-BL"
   ]
   themeVariant
-  checkListOfEnum "$RosePine: GTK Theme Variants" [
-    ""
-    "-Moon"
-  ]
-  iconVariant
   stdenv.mkDerivation {
     pname = "rose-pine-gtk";
     version = "unstable-2023-02-20";
@@ -39,18 +33,12 @@ in
 
     installPhase = let
       gtkTheme = "RosePine-${toString themeVariant}";
-      iconTheme = "Rose-Pine${toString iconVariant}";
     in ''
       runHook preInstall
 
-      mkdir -p $out/share/{icons,themes}
-      mkdir $out/share/icons/${iconTheme}
-      mkdir $out/share/icons/${iconTheme}/actions
-      mkdir $out/share/icons/${iconTheme}/actions/symbolic
-      cp $src/icons/${iconTheme}/actions/symbolic/edit-symbolic.svg $out/share/icons/${iconTheme}/actions/symbolic/document-edit-symbolic.svg
+      mkdir -p $out/share/themes
 
       cp -r $src/themes/${gtkTheme} $out/share/themes
-      cp -r $src/icons/${iconTheme} $out/share/icons
 
       runHook postInstall
     '';

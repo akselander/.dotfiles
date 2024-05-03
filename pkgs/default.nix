@@ -6,6 +6,5 @@ in rec {
   allWallpapers = pkgs.linkFarmFromDrvs "wallpapers" (lib.attrValues wallpapers);
   rose-pine-gtk = pkgs.callPackage ./rose-pine-gtk {
     themeVariant = ["Main-BL"];
-    iconVariant = [""];
   };
 }
