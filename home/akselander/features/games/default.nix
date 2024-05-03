@@ -10,12 +10,9 @@
     protonup-ng
     gamemode
     dxvk
-    # parsec-bin
 
     gamescope
 
-    # heroic
-    mangohud
 
     steamPackages.steam-runtime
   ];
