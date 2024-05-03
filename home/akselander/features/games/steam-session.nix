@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  monitor = lib.head (lib.filter (m: m.tv) config.monitors);
+  monitor = lib.head (lib.filter (m: m.primary) config.monitors);
   steam-session = let
     gamescope = lib.concatStringsSep " " [
       (lib.getExe pkgs.gamescope)
@@ -14,7 +14,7 @@
       "--prefer-output ${monitor.name}"
       "--adaptive-sync"
       "--expose-wayland"
-      "--hdr-enabled"
+      # "--hdr-enabled"
       "--steam"
     ];
     steam = lib.concatStringsSep " " [
