@@ -9,7 +9,7 @@
     inputs.hardware.nixosModules.common-pc-ssd
     ./hardware-configuration.nix
     inputs.disko.nixosModules.default
-    (import ./disko.nix {device = "/dev/nvme0n1";})
+    (import ../common/optional/disko.nix {device = "/dev/nvme0n1";})
 
     ../common/global
     ../common/users/akselander

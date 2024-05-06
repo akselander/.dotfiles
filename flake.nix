@@ -47,6 +47,7 @@
     lib = nixpkgs.lib // home-manager.lib;
     systems = [
       "x86_64-linux"
+      "aarch64-linux"
     ];
     forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
     pkgsFor = lib.genAttrs systems (
@@ -72,12 +73,23 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/feldspar];
       };
+      chert = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./hosts/chert];
+      };
     };
 
     homeConfigurations = {
       "akselander@feldspar" = lib.homeManagerConfiguration {
         modules = [./home/akselander/feldspar.nix];
         pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      "akselander@chert" = lib.homeManagerConfiguration {
+        modules = [./home/akselander/chert.nix];
+        pkgs = pkgsFor.aarch64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
         };
