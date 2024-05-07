@@ -1,11 +1,14 @@
 {
+  inputs,
   modulesPath,
   lib,
   ...
 }: {
   imports = [
-    (import ../common/optional/disko.nix {device = "/dev/sda";})
+    (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
+    inputs.disko.nixosModules.default
+    ./disko.nix
   ];
   boot.loader.grub = {
     efiSupport = true;
@@ -16,8 +19,6 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = [];
   boot.extraModulePackages = [];
-
-  networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
 }

@@ -8,8 +8,6 @@
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
     ./hardware-configuration.nix
-    inputs.disko.nixosModules.default
-    (import ../common/optional/disko.nix {device = "/dev/nvme0n1";})
 
     ../common/global
     ../common/users/akselander
