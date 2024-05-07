@@ -24,8 +24,8 @@ in {
     settings = {
       "plugin:hyprbars" = {
         bar_height = 25;
-        bar_color = "rgb(${config.colorScheme.colors.base00})";
-        "col.text" = "rgb(${config.colorScheme.colors.base05})";
+        bar_color = "rgb(${config.colorScheme.palette.base00})";
+        "col.text" = "rgb(${config.colorScheme.palette.base05})";
         bar_text_font = config.fontProfiles.regular.family;
         bar_text_size = 12;
         bar_part_of_window = true;
@@ -40,11 +40,11 @@ in {
           maximizeAction = "hyprctl dispatch togglefloating";
         in [
           # Red close button
-          "rgb(${config.colorScheme.colors.base08}),12,,${closeAction}"
+          "rgb(${config.colorScheme.palette.base08}),12,,${closeAction}"
           # Yellow "minimize" (send to special workspace) button
-          "rgb(${config.colorScheme.colors.base0A}),12,,${minimizeAction}"
+          "rgb(${config.colorScheme.palette.base0A}),12,,${minimizeAction}"
           # Green "maximize" (togglefloating) button
-          "rgb(${config.colorScheme.colors.base0B}),12,,${maximizeAction}"
+          "rgb(${config.colorScheme.palette.base0B}),12,,${maximizeAction}"
         ];
       };
       bind = let

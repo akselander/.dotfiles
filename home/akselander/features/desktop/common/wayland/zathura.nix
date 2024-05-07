@@ -6,7 +6,7 @@
 
     programs.zathura = {
       enable = true;
-      options = with config.colorScheme.colors; {
+      options = with config.colorScheme.palette; {
         default-bg = "#${base00}";
         default-fg = "#${base04}";
 

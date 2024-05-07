@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
 in {
   programs.swaylock = {
     enable = true;
@@ -22,26 +22,26 @@ in {
       indicator-idle-visible = true;
       indicator-y-position = 1000;
 
-      ring-color = "${colors.base0B}";
-      inside-wrong-color = "${colors.base01}";
-      ring-wrong-color = "${colors.base08}";
-      key-hl-color = "${colors.base0A}";
-      bs-hl-color = "${colors.base08}";
-      ring-ver-color = "${colors.base0A}";
-      inside-ver-color = "${colors.base01}";
-      inside-color = "${colors.base01}";
-      text-color = "${colors.base05}";
-      text-clear-color = "${colors.base05}";
-      text-ver-color = "${colors.base05}";
-      text-wrong-color = "${colors.base08}";
-      text-caps-lock-color = "${colors.base05}";
-      inside-clear-color = "${colors.base01}";
-      ring-clear-color = "${colors.base0D}";
-      inside-caps-lock-color = "${colors.base01}";
-      ring-caps-lock-color = "${colors.base09}";
-      caps-lock-key-hl-color = "${colors.base0A}";
-      caps-lock-bs-hl-color = "${colors.base08}";
-      separator-color = "${colors.base01}";
+      ring-color = "${palette.base0B}";
+      inside-wrong-color = "${palette.base01}";
+      ring-wrong-color = "${palette.base08}";
+      key-hl-color = "${palette.base0A}";
+      bs-hl-color = "${palette.base08}";
+      ring-ver-color = "${palette.base0A}";
+      inside-ver-color = "${palette.base01}";
+      inside-color = "${palette.base01}";
+      text-color = "${palette.base05}";
+      text-clear-color = "${palette.base05}";
+      text-ver-color = "${palette.base05}";
+      text-wrong-color = "${palette.base08}";
+      text-caps-lock-color = "${palette.base05}";
+      inside-clear-color = "${palette.base01}";
+      ring-clear-color = "${palette.base0D}";
+      inside-caps-lock-color = "${palette.base01}";
+      ring-caps-lock-color = "${palette.base09}";
+      caps-lock-key-hl-color = "${palette.base0A}";
+      caps-lock-bs-hl-color = "${palette.base08}";
+      separator-color = "${palette.base01}";
     };
   };
 }

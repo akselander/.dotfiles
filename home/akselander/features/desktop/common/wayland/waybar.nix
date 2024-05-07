@@ -179,7 +179,7 @@ in {
     # w x y z -> top, right, bottom, left
     style = let
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
-      inherit (config.colorScheme) colors;
+      inherit (config.colorScheme) palette;
       toRGBA = {
         color,
         opacity ? "1",
@@ -200,10 +200,10 @@ in {
           padding: 0;
           border-radius: 0.5em;
           background-color: ${toRGBA {
-          color = colors.base00;
+          color = palette.base00;
           opacity = "0.7";
         }};
-          color: ${toRGBA {color = colors.base05;}};
+          color: ${toRGBA {color = palette.base05;}};
         }
         .modules-left {
           margin-left: -0.65em;
@@ -213,21 +213,21 @@ in {
         }
 
         #workspaces button {
-          background-color: ${toRGBA {color = colors.base00;}};
-          color: ${toRGBA {color = colors.base05;}};
+          background-color: ${toRGBA {color = palette.base00;}};
+          color: ${toRGBA {color = palette.base05;}};
           padding-left: 0.4em;
           padding-right: 0.4em;
           margin-top: 0.15em;
           margin-bottom: 0.15em;
         }
         #workspaces button.hidden {
-          background-color: ${toRGBA {color = colors.base00;}};
-          color: ${toRGBA {color = colors.base04;}};
+          background-color: ${toRGBA {color = palette.base00;}};
+          color: ${toRGBA {color = palette.base04;}};
         }
         #workspaces button.focused,
         #workspaces button.active {
-          background-color: ${toRGBA {color = colors.base0A;}};
-          color: ${toRGBA {color = colors.base07;}};
+          background-color: ${toRGBA {color = palette.base0A;}};
+          color: ${toRGBA {color = palette.base07;}};
         }
 
         #clock {
@@ -237,15 +237,15 @@ in {
         }
 
         #custom-menu {
-          background-color: ${toRGBA {color = colors.base01;}};
+          background-color: ${toRGBA {color = palette.base01;}};
           padding-right: 1.5em;
           padding-left: 1em;
           margin-right: 0;
           border-radius: 0.5em;
         }
         #custom-menu.fullscreen {
-          background-color: ${toRGBA {color = colors.base0B;}};
-          color: ${toRGBA {color = colors.base0A;}};
+          background-color: ${toRGBA {color = palette.base0B;}};
+          color: ${toRGBA {color = palette.base0A;}};
         }
         #custom-hostname {
           padding-right: 1em;
@@ -257,7 +257,7 @@ in {
           padding-right: 0;
         }
         #tray {
-          color: ${toRGBA {color = colors.base05;}};
+          color: ${toRGBA {color = palette.base05;}};
         }
         #custom-gpu, #cpu, #memory {
           margin-left: 0.05em;

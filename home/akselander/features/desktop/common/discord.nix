@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  c = config.colorscheme.colors;
+  c = config.colorScheme.palette;
 in {
   home.packages = with pkgs; [vesktop];
   home.persistence = {

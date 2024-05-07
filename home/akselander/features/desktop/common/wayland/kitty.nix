@@ -1,6 +1,4 @@
-{config, ...}: let
-  inherit (config.colorscheme) colors harmonized;
-in {
+{config, ...}: {
   xdg.mimeApps = {
     associations.added = {
       "x-scheme-handler/terminal" = "kitty.desktop";
@@ -15,7 +13,7 @@ in {
       name = config.fontProfiles.monospace.family;
       size = 12;
     };
-    settings = with config.colorScheme.colors; {
+    settings = with config.colorScheme.palette; {
       enable_audio_bell = "no";
 
       cursor = "#${base06}";

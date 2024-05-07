@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  xdg.configFile."rofi/config.rasi".text = with config.colorScheme.colors; ''
+  xdg.configFile."rofi/config.rasi".text = with config.colorScheme.palette; ''
     /*****----- Configuration -----*****/
     configuration {
         show-icons:                 true;
