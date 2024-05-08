@@ -13,7 +13,7 @@ in {
     initialPassword = "12345";
     description = "akselander";
     shell = pkgs.fish;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "vrising"];
     packages = [pkgs.home-manager];
   };
 

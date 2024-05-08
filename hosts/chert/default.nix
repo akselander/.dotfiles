@@ -8,6 +8,7 @@
 
     ../common/global
     ../common/users/akselander
+
     ../common/optional/nuke-root.nix
   ];
 
@@ -16,8 +17,6 @@
     networkmanager.enable = true;
   };
 
-
-
   services.openssh.enable = true;
   users.users.akselander.openssh.authorizedKeys.keys = [
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDFHx1R9WUjlBiJ+3n7yyjTpnkIUN/iOn/jL/NCmCzJlAAAAFXNzaDpha3NlbGFuZGVyQGdpdGh1Yg=="
@@ -25,7 +24,6 @@
   ];
   users.users.root.hashedPasswordFile = "/persist/passwords/root";
   users.users.akselander.hashedPasswordFile = "/persist/passwords/akselander";
-
 
   security.sudo.wheelNeedsPassword = false;
   # This value determines the NixOS release from which the default

@@ -15,6 +15,7 @@
         "/var/lib/systemd/coredump"
         "/var/cache/regreet"
         "/etc/NetworkManager/system-connections"
+        "/var/lib/vrising"
       ];
     };
   };

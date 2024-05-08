@@ -1,2 +1,3 @@
 {
+  vrising = import ./vrising.nix;
 }
