@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   modulesPath,
   lib,
   ...
@@ -10,9 +11,16 @@
     inputs.disko.nixosModules.default
     ./disko.nix
   ];
-  boot.loader.grub = {
-    efiSupport = true;
-    efiInstallAsRemovable = true;
+
+  boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        consoleMode = "max";
+      };
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
