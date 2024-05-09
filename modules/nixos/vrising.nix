@@ -6,7 +6,28 @@
 }:
 with lib; let
   cfg = config.services.vrising-server;
-  wine = pkgs.wineWowPackages.waylandFull;
+  wine = pkgs.wine.override { wineBuild = "wine64"; };
+  shutdownScript =
+    pkgs.writeShellScript "shutdown"
+    ''
+      PID=$(pgrep -f '^Z:\\var\\lib\\vrising\\VRisingServer.exe')
+      echo "Stopping PID: $PID"
+      kill -SIGINT $PID
+
+      # systemd will eventually kill this if it doesnt work after 90s
+      while true; do
+          sleep 1
+          PID=$(pgrep -f '^Z:\\var\\lib\\vrising\\VRisingServer.exe')
+          if [ -z "$PID" ]; then
+              echo "Process successfully stopped gracefully"
+              echo "Killing any leftover wine processes"
+              wineserver -k
+              sleep 1
+              exit
+          fi
+          sleep 1
+      done
+    '';
 in {
   options.services.vrising-server = {
     enable = mkEnableOption "V Rising Dedicated Server";
@@ -50,39 +71,58 @@ in {
   };
 
   config = mkIf cfg.enable {
+    systemd.services.vrising-framebuffer = {
+      description = "X Virtual Frame Buffer Service";
+      wantedBy = ["multi-user.target"];
+      before = ["vrising-server.service"];
+      partOf = ["vrising-server.service"];
+
+      serviceConfig = {
+        ExecStart = ''
+          ${pkgs.xvfb-run}/bin/xvfb-run -n 73691542 --server-args="-screen 0 1024x768x16"
+        '';
+        User = "vrising";
+        WorkingDirectory = "/var/lib/vrising";
+      };
+
+      preStart = ''
+        mkdir -p /tmp/.X11.unix
+      '';
+    };
+
     systemd.services.vrising-server = let
       steamcmd = "${pkgs.steamcmd}/bin/steamcmd";
     in {
-
       description = "V Rising Dedicated Server";
       wantedBy = ["multi-user.target"];
-      after = ["network.target"];
+      after = ["network.target" "vrising-framebuffer.service"];
+      requires = ["vrising-framebuffer.service"];
 
       serviceConfig = {
         TimeoutSec = "15min";
-        ExecStart =
-        ''
-        ${pkgs.xvfb-run}/bin/xvfb-run :0 -screen 0 1024x768x16 & \
-        ${wine}/bin/wine64 /var/lib/vrising/server/VRisingServer.exe \
-          -persistentDataPath /var/lib/vrising/saves \
-          -serverName ${cfg.serverName} \
-          -gamePort ${toString cfg.serverPort} \
-          -queryPort ${toString cfg.queryPort} \
-          -lowerFPSWhenEmpty true \
-          -password kremowka \
-          -saveName ${cfg.saveName} \
-          -preset StandardPvP_NoSiege \
-          -difficultyPreset Difficulty_Brutal
+        ExecStart = ''
+          DISPLAY=:73691542 ${wine}/bin/wine64 /var/lib/vrising/server/VRisingServer.exe \
+            -persistentDataPath Z:/var/lib/vrising/data \
+            -serverName ${cfg.serverName} \
+            -gamePort ${toString cfg.serverPort} \
+            -queryPort ${toString cfg.queryPort} \
+            -lowerFPSWhenEmpty true \
+            -password kremowka \
+            -saveName ${cfg.saveName} \
+            -preset StandardPvP_NoSiege \
+            -difficultyPreset Difficulty_Brutal
         '';
+        ExecStop = "${pkgs.bash}/bin/bash ${shutdownScript}/bin/shutdown";
         Restart = "always";
         User = "vrising";
         WorkingDirectory = "/var/lib/vrising";
       };
 
       preStart = ''
-        ${steamcmd} +force_install_dir "/var/lib/vrising/server" +login anonymous +app_update 1829350 validate +quit
+        ${steamcmd} +@sSteamCmdForcePlatformType windows +force_install_dir "/var/lib/vrising/server" +login anonymous +app_update 1829350 validate +quit
       '';
     };
+
     users.users.vrising = {
       description = "V Rising server service user";
       home = "/var/lib/vrising";

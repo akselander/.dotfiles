@@ -26,12 +26,6 @@
 
   services.vrising-server.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    wineWowPackages.stable
-    wineWowPackages.waylandFull
-    winetricks
-  ];
-
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     loader = {
