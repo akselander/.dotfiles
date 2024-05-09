@@ -71,37 +71,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.services.vrising-framebuffer = {
-      description = "X Virtual Frame Buffer Service";
-      wantedBy = ["multi-user.target"];
-      before = ["vrising-server.service"];
-      partOf = ["vrising-server.service"];
-
-      serviceConfig = {
-        ExecStart = ''
-          ${pkgs.xvfb-run}/bin/xvfb-run -n 73691542 --server-args="-screen 0 1024x768x16"
-        '';
-        User = "vrising";
-        WorkingDirectory = "/var/lib/vrising";
-      };
-
-      preStart = ''
-        mkdir -p /tmp/.X11.unix
-      '';
-    };
 
     systemd.services.vrising-server = let
       steamcmd = "${pkgs.steamcmd}/bin/steamcmd";
     in {
       description = "V Rising Dedicated Server";
       wantedBy = ["multi-user.target"];
-      after = ["network.target" "vrising-framebuffer.service"];
-      requires = ["vrising-framebuffer.service"];
+      after = ["network.target"];
 
       serviceConfig = {
         TimeoutSec = "15min";
         ExecStart = ''
-          DISPLAY=:73691542 ${wine}/bin/wine64 /var/lib/vrising/server/VRisingServer.exe \
+          ${pkgs.xvfb-run}/bin/xvfb-run --server-args="-screen 0 1024x768x16" \
+          ${wine}/bin/wine64 /var/lib/vrising/server/VRisingServer.exe \
             -persistentDataPath Z:/var/lib/vrising/data \
             -serverName ${cfg.serverName} \
             -gamePort ${toString cfg.serverPort} \
@@ -112,7 +94,7 @@ in {
             -preset StandardPvP_NoSiege \
             -difficultyPreset Difficulty_Brutal
         '';
-        ExecStop = "${pkgs.bash}/bin/bash ${shutdownScript}/bin/shutdown";
+        ExecStop = "${pkgs.bash}/bin/bash ${shutdownScript}";
         Restart = "always";
         User = "vrising";
         WorkingDirectory = "/var/lib/vrising";

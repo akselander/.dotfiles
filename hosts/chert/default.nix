@@ -12,6 +12,8 @@
     ../common/optional/nuke-root.nix
   ];
 
+  services.vrising-server.enable = true;
+
   networking = {
     hostName = "chert";
     networkmanager.enable = true;

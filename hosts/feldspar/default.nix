@@ -24,8 +24,6 @@
     networkmanager.enable = true;
   };
 
-  services.vrising-server.enable = true;
-
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     loader = {
