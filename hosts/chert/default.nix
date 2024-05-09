@@ -13,6 +13,7 @@
   ];
 
   services.vrising-server.enable = true;
+  services.vrising-server.openFirewall = true;
 
   networking = {
     hostName = "chert";

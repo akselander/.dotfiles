@@ -10,14 +10,15 @@ with lib; let
   shutdownScript =
     pkgs.writeShellScript "shutdown"
     ''
-      PID=$(pgrep -f '^Z:\\var\\lib\\vrising\\VRisingServer.exe')
+      PID=$(pgrep -f '^Z:\\var\\lib\\vrising\\server\\VRisingServer.exe')
       echo "Stopping PID: $PID"
       kill -SIGINT $PID
 
       # systemd will eventually kill this if it doesnt work after 90s
       while true; do
           sleep 1
-          PID=$(pgrep -f '^Z:\\var\\lib\\vrising\\VRisingServer.exe')
+          echo "Looking for VRising PID"
+          PID=$(pgrep -f '^Z:\\var\\lib\\vrising\\server\\VRisingServer.exe')
           if [ -z "$PID" ]; then
               echo "Process successfully stopped gracefully"
               echo "Killing any leftover wine processes"
@@ -80,7 +81,6 @@ in {
       after = ["network.target"];
 
       serviceConfig = {
-        TimeoutSec = "15min";
         ExecStart = ''
           ${pkgs.xvfb-run}/bin/xvfb-run --server-args="-screen 0 1024x768x16" \
           ${wine}/bin/wine64 /var/lib/vrising/server/VRisingServer.exe \
@@ -95,7 +95,8 @@ in {
             -difficultyPreset Difficulty_Brutal
         '';
         ExecStop = "${pkgs.bash}/bin/bash ${shutdownScript}";
-        Restart = "always";
+        Restart = "on-failure";
+        RestartSec = "5";
         User = "vrising";
         WorkingDirectory = "/var/lib/vrising";
       };
