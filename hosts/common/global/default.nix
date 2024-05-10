@@ -13,6 +13,7 @@
       ./nix.nix
       ./persistence.nix
       ./steam-hardware.nix
+      ./ssh.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 

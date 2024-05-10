@@ -19,10 +19,11 @@
     ../common/optional/bluetooth.nix
   ];
 
+  services.openssh.enable = true;
+
   networking = {
     hostName = "feldspar";
     networkmanager.enable = true;
-    useDHCP = true;
   };
 
   boot = {
