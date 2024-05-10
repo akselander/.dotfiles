@@ -12,8 +12,30 @@
     ../common/optional/nuke-root.nix
   ];
 
-  services.vrising-server.enable = true;
-  services.vrising-server.openFirewall = true;
+  services.vrising-server = {
+    enable = true;
+    openFirewall = true;
+    game = {
+      DeathContainerPermission = "ClanMembers";
+      GameDifficulty = 2;
+      ClanSize = 10;
+      PlayerDamageMode = "Always";
+      CastleDamageMode = "Never";
+      SunDamageModifier = 1.0;
+      BloodDrainModifier = 1.0;
+      UnitStatModifiers_Global = {
+        MaxHealthModifier = 1.0;
+        PowerModifier = 1.4;
+      };
+      UnitStatModifiers_VBlood = {
+        MaxHealthModifier = 1.25;
+        PowerModifier = 1.7;
+        LevelIncrease = 3;
+      };
+      DropTableModifier_General = 1.25;
+      DurabilityDrainModifier = 0.5;
+    };
+  };
 
   networking = {
     hostName = "chert";
