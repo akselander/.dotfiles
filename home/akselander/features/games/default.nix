@@ -8,6 +8,7 @@
     gamescope
     steam
     protonup-ng
+    mangohud
   ];
 
   home = {
