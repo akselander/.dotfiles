@@ -318,10 +318,10 @@ in {
       };
 
       preStart = ''
-        ${steamcmd} +@sSteamCmdForcePlatformType windows +force_install_dir "/var/lib/vrising/server" +login anonymous +app_update 1829350 validate +quit
-	mkdir -p /var/lib/vrising/server/Settings
-	rm -f /var/lib/vrising/data/Settings/ServerGameSettings.json
-	ln -s ${settingsFile} /var/lib/vrising/data/Settings/ServerGameSettings.json
+               ${steamcmd} +@sSteamCmdForcePlatformType windows +force_install_dir "/var/lib/vrising/server" +login anonymous +app_update 1829350 validate +quit
+        mkdir -p /var/lib/vrising/server/Settings
+        rm -f /var/lib/vrising/data/Settings/ServerGameSettings.json
+        ln -s ${settingsFile} /var/lib/vrising/data/Settings/ServerGameSettings.json
       '';
     };
 

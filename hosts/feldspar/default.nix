@@ -22,25 +22,15 @@
   networking = {
     hostName = "feldspar";
     networkmanager.enable = true;
+    useDHCP = true;
   };
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    loader = {
-      systemd-boot = {
-        enable = true;
-        consoleMode = "max";
-      };
-      efi.canTouchEfiVariables = true;
-    };
   };
 
   # Loads nvidia driver for bothj X and Wayland
   services.xserver.videoDrivers = ["nvidia"];
-
-  environment.variables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
 
   programs = {
     dconf.enable = true;
