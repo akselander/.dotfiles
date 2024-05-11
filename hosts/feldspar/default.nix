@@ -39,6 +39,7 @@
     nvidia = {
       prime.offload.enable = false;
       modesetting.enable = true;
+      open = true;
     };
     opengl = {
       enable = true;
