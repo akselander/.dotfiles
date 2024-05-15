@@ -4,44 +4,26 @@
   pkgs,
   inputs,
   ...
-}: let
-  startScript = pkgs.writeShellScriptBin "start" ''
-     ${pkgs.swww}/bin/swww init &
-
-     ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
-
-     hyprctl setcursor Bibata-Modern-Ice 16 &
-
-     systemctl --user import-environment PATH &
-     systemctl --user restart xdg-desktop-portal.service &
-
-     # wait a tiny bit for wallpaper
-     sleep 2
-
-    ${pkgs.swww}/bin/swww img ${./../prism/wallpapers/gruvbox-mountain-village.png} &
-
-    ${config.myHomeManager.startupScript}
-  '';
-
-  hyprland = pkgs.inputs.hyprland.hyprland.override {wrapRuntimeDeps = false;};
-  xdph = pkgs.inputs.hyprland.xdg-desktop-portal-hyprland.override {inherit hyprland;};
-in {
+}:
+{
   imports = [
     ../common
     ../common/wayland
     ./binds.nix
-    ./hyprbars.nix
+    # ./hyprbars.nix
   ];
 
-  xdg.portal = {
+  xdg.portal = let
+    hyprland = config.wayland.windowManager.hyprland.package;
+    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+  in {
     extraPortals = [xdph];
     configPackages = [hyprland];
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland;
-    plugins = [];
+    package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
     systemd = {
       enable = true;
       # Same as default, but stop graphical-session too
@@ -50,9 +32,10 @@ in {
         "systemctl --user start hyprland-session.target"
       ];
     };
+
     settings = let
-      active = "rgba(${config.colorscheme.colors.base0A}ff) rgba(${config.colorscheme.colors.base0B}ff) 60deg";
-      inactive = "rgba(${config.colorscheme.colors.base03}ff)";
+      active = "rgba(${config.colorScheme.palette.base0A}ff) rgba(${config.colorScheme.palette.base0B}ff) 60deg";
+      inactive = "rgba(${config.colorScheme.palette.base03}ff)";
     in {
       general = {
         cursor_inactive_timeout = 4;
