@@ -77,7 +77,6 @@ in {
 
         modules-center = [
           "cpu"
-          "custom/gpu"
           "memory"
           "clock"
           "pulseaudio"
@@ -102,11 +101,6 @@ in {
 
         cpu = {
           format = "  {usage}%";
-        };
-        "custom/gpu" = {
-          interval = 5;
-          exec = mkScript {script = "cat /sys/class/drm/card0/device/gpu_busy_percent";};
-          format = "󰒋  {}%";
         };
         memory = {
           format = "  {}%";
@@ -259,7 +253,7 @@ in {
         #tray {
           color: ${toRGBA {color = palette.base05;}};
         }
-        #custom-gpu, #cpu, #memory {
+        #cpu, #memory {
           margin-left: 0.05em;
           margin-right: 0.55em;
         }
