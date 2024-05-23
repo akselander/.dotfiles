@@ -32,6 +32,9 @@
         PowerModifier = 1.7;
         LevelIncrease = 3;
       };
+      CastleStatModifiers_Global = {
+        CastleLimit = 8;
+      };
       DropTableModifier_General = 1.25;
       DurabilityDrainModifier = 0.5;
     };
