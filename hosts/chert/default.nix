@@ -34,6 +34,19 @@
       };
       CastleStatModifiers_Global = {
         CastleLimit = 8;
+        HeartLimits = {
+          Level3 = {
+            FloorLimit = 360;
+          };
+          Level4 = {
+            FloorLimit = 550;
+            HeightLimit = 5;
+          };
+          Level5 = {
+            FloorLimit = 1000;
+            HeightLimit = 6;
+          };
+        };
       };
       DropTableModifier_General = 1.25;
       DurabilityDrainModifier = 0.5;
