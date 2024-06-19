@@ -77,6 +77,10 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/chert];
       };
+      gossan = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./hosts/gossan];
+      };
     };
 
     homeConfigurations = {
@@ -90,6 +94,13 @@
       "akselander@chert" = lib.homeManagerConfiguration {
         modules = [./home/akselander/chert.nix];
         pkgs = pkgsFor.aarch64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      "akselander@gossan" = lib.homeManagerConfiguration {
+        modules = [./home/akselander/gossan.nix];
+        pkgs = pkgsFor.x86-64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
         };
