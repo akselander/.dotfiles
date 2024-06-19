@@ -21,9 +21,9 @@
       efi.canTouchEfiVariables = true;
     };
     extraModulePackages = [];
-    initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod"];
     initrd.kernelModules = ["dm-snapshot"];
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = ["kvm-amd"];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

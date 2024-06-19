@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ../common
     ../common/wayland
@@ -126,6 +125,13 @@
         follow_mouse = 1;
         force_no_accel = 1;
         sensitivity = 0.000000;
+        touchpad = {
+          natural_scroll = false;
+        };
+      };
+
+      gestures = {
+          workspace_swipe = true;
       };
 
       dwindle = {
