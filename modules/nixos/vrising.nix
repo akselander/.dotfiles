@@ -1542,5 +1542,13 @@ in {
         cfg.server.queryPort
       ];
     };
+
+    environment.persistence = {
+      "/persist" = {
+        directories = [
+          "/var/lib/vrising"
+        ];
+      };
+    };
   };
 }
