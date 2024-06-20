@@ -14,6 +14,7 @@
     ../common/users/akselander
 
     ../common/optional/nuke-root.nix
+    ../common/optional/encrypted-root.nix
     ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
