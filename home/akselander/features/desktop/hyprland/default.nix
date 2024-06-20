@@ -20,12 +20,16 @@
     configPackages = [hyprland];
   };
 
+  home.packages = with pkgs; [
+    grimblast
+    hyprpicker
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
     systemd = {
       enable = true;
-      # Same as default, but stop graphical-session too
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
@@ -37,17 +41,46 @@
       inactive = "rgba(${config.colorScheme.palette.base03}ff)";
     in {
       general = {
-        cursor_inactive_timeout = 4;
         gaps_in = 15;
         gaps_out = 20;
         border_size = 2;
         "col.active_border" = active;
         "col.inactive_border" = inactive;
+        cursor_inactive_timeout = 4;
       };
+
       group = {
         "col.border_active" = active;
         "col.border_inactive" = inactive;
         groupbar.font_size = 11;
+      };
+
+      input = {
+        kb_layout = "pl";
+        kb_variant = "";
+        kb_model = "";
+        follow_mouse = 1;
+        force_no_accel = 1;
+        sensitivity = 0.000000;
+        touchpad = {
+          natural_scroll = false;
+          disable_while_typing = false;
+        };
+      };
+
+      gestures = {
+        workspace_swipe = true;
+      };
+
+      dwindle = {
+        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+        split_width_multiplier = 1.35;
+        pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        preserve_split = true; # you probably want this
+      };
+
+      misc = {
+        new_window_takes_over_fullscreen = 2;
       };
 
       monitor = let
@@ -118,28 +151,6 @@
         # "WLR_RENDERER_ALLOW_SOFTWARE,1"
       ];
 
-      input = {
-        kb_layout = "pl";
-        kb_variant = "";
-        kb_model = "";
-        follow_mouse = 1;
-        force_no_accel = 1;
-        sensitivity = 0.000000;
-        touchpad = {
-          natural_scroll = false;
-        };
-      };
-
-      gestures = {
-        workspace_swipe = true;
-      };
-
-      dwindle = {
-        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        split_width_multiplier = 1.35;
-        pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-        preserve_split = true; # you probably want this
-      };
       windowrulev2 = let
         steam = "title:^()$,class:^(steam)$";
       in [
@@ -164,7 +175,7 @@
         rounding = 7;
         blur = {
           enabled = true;
-          size = 5;
+          size = 4;
           passes = 3;
           new_optimizations = true;
           ignore_opacity = true;
@@ -238,8 +249,7 @@
             swaylock = lib.getExe config.programs.swaylock.package;
           in
             lib.optionals config.programs.swaylock.enable [
-              ",XF86Launch5,exec,${swaylock} -S --grace 2"
-              ",XF86Launch4,exec,${swaylock} -S --grace 2"
+              ",XF86PowerOff,exec,${swaylock} -S --grace 2"
               "$mainMod,backspace,exec,${swaylock} -S --grace 2"
             ]
         );
