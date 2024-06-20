@@ -4,6 +4,7 @@
     ./fish.nix
     ./fzf.nix
     ./git.nix
+    ./gh.nix
     ./shellcolor.nix
     ./ssh.nix
     ./starship.nix
