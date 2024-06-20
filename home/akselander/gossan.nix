@@ -9,6 +9,8 @@
     inputs.nix-colors.homeManagerModules.default
     ./global
     ./features/desktop/hyprland
+    ./features/desktop/wireless
+    ./features/desktop/slack
   ];
 
   wallpaper = lib.mkDefault pkgs.wallpapers.outer-wilds;
