@@ -1,15 +1,20 @@
-return {
-    {
-        "nvim-neotest/neotest",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "marilari88/neotest-vitest",
-            "nvim-neotest/neotest-plenary",
-            "nvim-neotest/nvim-nio",
-        },
-        config = function()
+{pkgs, ...}: {
+  programs.neovim = {
+    plugins = with pkgs.vimPlugins; [
+      plenary-nvim
+      FixCursorHold-nvim
+      nvim-treesitter
+      neotest-vitest
+      neotest-plenary
+      nvim-nio
+      {
+        plugin = neotest;
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
             local neotest = require("neotest")
             neotest.setup({
                 adapters = {
@@ -25,6 +30,8 @@ return {
             vim.keymap.set("n", "<leader>tc", function()
                 neotest.run.run()
             end)
-        end,
-    },
+          '';
+      }
+    ];
+  };
 }

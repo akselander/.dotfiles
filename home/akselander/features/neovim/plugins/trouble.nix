@@ -1,7 +1,14 @@
-return {
-    {
-        "folke/trouble.nvim",
-        config = function()
+{pkgs, ...}: {
+  programs.neovim = {
+    plugins = with pkgs.vimPlugins; [
+      {
+        plugin = trouble-nvim;
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
             require("trouble").setup({
                 icons = false,
             })
@@ -17,6 +24,8 @@ return {
             vim.keymap.set("n", "]t", function()
                 require("trouble").previous({ skip_groups = true, jump = true });
             end)
-        end
-    },
+          '';
+      }
+    ];
+  };
 }

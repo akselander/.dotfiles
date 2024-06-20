@@ -34,8 +34,8 @@
               ];
 
               # settings = {
-                # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
-                #crypttabExtraOpts = ["fido-2-device=auto" "token-timeout=10"];
+              # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
+              #crypttabExtraOpts = ["fido-2-device=auto" "token-timeout=10"];
               #};
               content = {
                 type = "btrfs";

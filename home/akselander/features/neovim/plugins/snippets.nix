@@ -1,14 +1,15 @@
-return {
-    {
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp",
-
-        dependencies = { "rafamadriz/friendly-snippets" },
-
-        config = function()
+{pkgs, ...}: {
+  programs.neovim = {
+    plugins = with pkgs.vimPlugins; [
+      friendly-snippets
+      {
+        plugin = luasnip;
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
             local ls = require("luasnip")
             ls.filetype_extend("javascript", { "jsdoc" })
 
@@ -23,6 +24,8 @@ return {
                     ls.change_choice(1)
                 end
             end, { silent = true })
-        end,
-    }
+          '';
+      }
+    ];
+  };
 }
