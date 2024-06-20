@@ -80,6 +80,7 @@ in {
           "memory"
           "clock"
           "pulseaudio"
+          "battery"
         ];
 
         modules-right = [
@@ -121,6 +122,32 @@ in {
             ];
           };
           on-click = lib.getExe pkgs.pavucontrol;
+        };
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰒳";
+            deactivated = "󰒲";
+          };
+        };
+        battery = {
+          bat = "BAT0";
+          interval = 10;
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
+          format = "{icon} {capacity}%";
+          format-charging = "󰂄 {capacity}%";
+          onclick = "";
         };
         "sway/window" = {
           max-length = 20;
