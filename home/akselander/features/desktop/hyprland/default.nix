@@ -137,7 +137,7 @@
         # "LIBVA_DRIVER_NAME,nvidia"
         # "GBM_BACKEND,nvidia-drm"
         # "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        "WLR_NO_HARDWARE_CURSORS,1"
+        # "WLR_NO_HARDWARE_CURSORS,1"
         # "__NV_PRIME_RENDER_OFFLOAD,1"
         # "__VK_LAYER_NV_optimus,NVIDIA_only"
         # "PROTON_ENABLE_NGX_UPDATER,1"
