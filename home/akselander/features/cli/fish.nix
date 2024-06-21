@@ -30,7 +30,7 @@ in {
       clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
     };
     functions = {
-      fish_greeting = "fastfetch";
+      fish_greeting = "";
       # Grep using ripgrep and pass to nvim
       nvimrg = mkIf (hasNeovim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
       # Merge history upon doing up-or-search
