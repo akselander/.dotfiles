@@ -74,4 +74,13 @@ in {
         bind \cf ${sessionizerScript}
       '';
   };
+  programs.neovim = {
+    extraLuaConfig =
+      /*
+      lua
+      */
+      ''
+        vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ${sessionizerScript}<CR>")
+      '';
+  };
 }
