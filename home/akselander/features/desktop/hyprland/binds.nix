@@ -44,7 +44,7 @@
     in
       [
         "SUPERSHIFT,q,killactive"
-        "SUPERSHIFT,e,exit"
+        # "SUPERSHIFT,e,exit"
 
         "SUPER,s,togglesplit"
         "SUPER,f,fullscreen,1"
