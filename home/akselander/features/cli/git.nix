@@ -25,5 +25,8 @@ in {
       rerere.enabled = true;
     };
     lfs.enable = true;
+    ignores = [
+      ".direnv"
+    ];
   };
 }
