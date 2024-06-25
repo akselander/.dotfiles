@@ -60,7 +60,7 @@ in {
       # Integrate ssh with shellcolord
       ssh =
         mkIf hasShellColor # fish
-
+        
         ''
           ${shellcolor} disable $fish_pid
           # Check if kitty is available

@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   tmux = "${pkgs.tmux}/bin/tmux";
-  fzf ="${pkgs.fzf}/bin/fzf";
+  fzf = "${pkgs.fzf}/bin/fzf";
   sessionizerScript =
     pkgs.writeShellScript "sessionizer"
     ''
