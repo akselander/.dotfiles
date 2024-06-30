@@ -3,7 +3,6 @@
 in rec {
   shellcolord = pkgs.callPackage ./shellcolord {};
   wallpapers = import ./wallpapers {inherit pkgs;};
-  hyprbars = pkgs.callPackage ./hyprbars {};
 
   allWallpapers = pkgs.linkFarmFromDrvs "wallpapers" (lib.attrValues wallpapers);
   rose-pine-gtk = pkgs.callPackage ./rose-pine-gtk {

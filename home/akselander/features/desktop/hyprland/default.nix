@@ -46,8 +46,9 @@
         border_size = 2;
         "col.active_border" = active;
         "col.inactive_border" = inactive;
-        cursor_inactive_timeout = 4;
       };
+
+      cursor.inactive_timeout = 4;
 
       group = {
         "col.border_active" = active;
