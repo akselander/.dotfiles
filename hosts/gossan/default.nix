@@ -14,11 +14,12 @@
     ../common/global
     ../common/users/akselander
 
-    ../common/optional/nuke-root.nix
+    ../common/optional/bluetooth.nix
     ../common/optional/greetd.nix
+    ../common/optional/nuke-root.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
-    ../common/optional/bluetooth.nix
+    ../common/optional/tlp.nix
   ];
 
   networking = {
