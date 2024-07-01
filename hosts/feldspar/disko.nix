@@ -23,7 +23,7 @@
           };
           luks = {
             size = "100%";
-            label = "gossan";
+            label = "feldspar";
             content = {
               type = "luks";
               name = "cryptroot";
