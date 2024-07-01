@@ -27,6 +27,9 @@
             content = {
               type = "luks";
               name = "cryptroot";
+              extraFormatArgs = [
+                "--sector-size=4096"
+              ];
               extraOpenArgs = [
                 "--allow-discards"
                 "--perf-no_read_workqueue"
