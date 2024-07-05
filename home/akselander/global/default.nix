@@ -56,11 +56,15 @@
           "Downloads"
           "Pictures"
           "Videos"
-          "work"
           "projects"
           "personal"
           ".local/bin"
           ".local/share/nix" # trusted settings and repl history
+          {
+            # Use symlink to handle bloated repos
+            directory = "work";
+            method = "symlink";
+          }
         ];
         allowOther = true;
       };
