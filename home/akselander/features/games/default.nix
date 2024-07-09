@@ -11,18 +11,5 @@
     mangohud
   ];
 
-  home = {
-    persistence = {
-      "/persist/home/akselander" = {
-        allowOther = true;
-        directories = [
-          {
-            # Use symlink, as games may be IO-heavy
-            directory = ".local/share/Steam";
-            method = "symlink";
-          }
-        ];
-      };
-    };
-  };
+  impermanence.cache.directories = [".local/share/Steam"];
 }

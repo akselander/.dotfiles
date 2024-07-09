@@ -12,7 +12,5 @@
       prompt = "enabled";
     };
   };
-  home.persistence = {
-    "/persist/${config.home.homeDirectory}".files = [".config/gh/hosts.yml"];
-  };
+  impermanence.cache.files = [".config/gh/hosts.yml"];
 }

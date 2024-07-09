@@ -11,7 +11,7 @@
       ./fish.nix
       ./locale.nix
       ./nix.nix
-      ./persistence.nix
+      # ./persistence.nix
       ./steam-hardware.nix
       ./ssh.nix
     ]

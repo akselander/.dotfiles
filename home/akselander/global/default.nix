@@ -8,7 +8,6 @@
 }: {
   imports =
     [
-      inputs.impermanence.nixosModules.home-manager.impermanence
       ../features/cli
       ../features/neovim
     ]
@@ -46,28 +45,6 @@
     stateVersion = lib.mkDefault "24.05";
     sessionVariables = {
       FLAKE = "$HOME/.dotfiles";
-    };
-
-    persistence = {
-      "/persist/home/akselander" = {
-        directories = [
-          ".dotfiles"
-          "Documents"
-          "Downloads"
-          "Pictures"
-          "Videos"
-          "projects"
-          "personal"
-          ".local/bin"
-          ".local/share/nix" # trusted settings and repl history
-          {
-            # Use symlink to handle bloated repos
-            directory = "work";
-            method = "symlink";
-          }
-        ];
-        allowOther = true;
-      };
     };
   };
 }

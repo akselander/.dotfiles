@@ -13,9 +13,7 @@
   hasKitty = config.programs.kitty.enable;
   shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
 in {
-  home.persistence = {
-    "/persist/home/akselander".files = [".local/share/fish/fish_history"];
-  };
+  impermanence.cache.directories = [".local/share/fish"];
 
   programs.fish = {
     enable = true;

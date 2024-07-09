@@ -6,9 +6,7 @@
   c = config.colorScheme.palette;
 in {
   home.packages = with pkgs; [vesktop];
-  home.persistence = {
-    "/persist/home/akselander".directories = [".config/vesktop"];
-  };
+  impermanence.cache.directories = [".config/vesktop"];
   xdg.configFile."vesktop/themes/base16.css".text =
     /*
     css

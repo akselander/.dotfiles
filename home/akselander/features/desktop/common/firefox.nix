@@ -8,9 +8,11 @@
     "x-scheme-handler/https" = ["firefox.desktop"];
   };
 
-  home = {
-    persistence = {
-      "/persist/home/akselander".directories = [".mozilla" ".cache/mozilla"];
-    };
-  };
+  impermanence.data.directories = [
+    ".mozilla"
+  ];
+
+  impermanence.cache.directories = [
+    ".cache/mozilla"
+  ];
 }

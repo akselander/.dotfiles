@@ -1543,12 +1543,8 @@ in {
       ];
     };
 
-    environment.persistence = {
-      "/persist" = {
-        directories = [
-          "/var/lib/vrising"
-        ];
-      };
-    };
+    impermanence.directories = [
+      "/var/lib/vrising"
+    ];
   };
 }

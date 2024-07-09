@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [telegram-desktop];
-  home.persistence = {
-    "/persist/home/akselander".directories = [".local/share/TelegramDesktop"];
-  };
+  impermanence.cache.directories = [
+    ".local/share/TelegramDesktop"
+  ];
 }

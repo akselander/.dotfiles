@@ -9,7 +9,5 @@ in {
     enable = true;
   };
 
-  home.persistence = {
-    "/persist/home/akselander".directories = [".ssh"];
-  };
+  impermanence.home.directories = [".ssh"];
 }

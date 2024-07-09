@@ -13,12 +13,13 @@
     ../common/global
     ../common/users/akselander
 
-    ../common/optional/nuke-root.nix
     ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
     ../common/optional/bluetooth.nix
   ];
+
+  impermanence.nukeRoot.enable = true;
 
   networking = {
     hostName = "feldspar";

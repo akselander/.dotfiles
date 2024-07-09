@@ -8,9 +8,9 @@
 
     ../common/global
     ../common/users/akselander
-
-    ../common/optional/nuke-root.nix
   ];
+
+  impermanence.nukeRoot.enable = true;
 
   services.vrising-server = {
     enable = true;
