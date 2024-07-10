@@ -65,13 +65,13 @@ in {
             ".dotfiles"
           ]
           ++ config.home-manager.users."${name}".impermanence.data.directories;
-         files = config.home-manager.users."${name}".impermanence.data.files;
-       }) (config.home-manager.users);
+        files = config.home-manager.users."${name}".impermanence.data.files;
+      }) (config.home-manager.users);
       persistentCache = builtins.mapAttrs (name: user: {
         directories =
           [".config/dconf"]
           ++ config.home-manager.users."${name}".impermanence.cache.directories;
-         files = config.home-manager.users."${name}".impermanence.cache.files;
+        files = config.home-manager.users."${name}".impermanence.cache.files;
       }) (config.home-manager.users);
     in {
       "/persist/userdata".users = persistentData;

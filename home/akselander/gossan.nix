@@ -13,7 +13,12 @@
     ./features/desktop/slack
   ];
 
-  impermanence.data.directories = ["work"];
+  impermanence.data.directories = [
+    {
+      directory = "work";
+      method = "symlink";
+    }
+  ];
 
   wallpaper = lib.mkDefault pkgs.wallpapers.outer-wilds;
   colorScheme = inputs.nix-colors.colorSchemes.rose-pine;
