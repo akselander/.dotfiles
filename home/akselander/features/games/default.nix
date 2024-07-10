@@ -11,5 +11,10 @@
     mangohud
   ];
 
-  impermanence.cache.directories = [".local/share/Steam"];
+  impermanence.home.directories = [
+    {
+      directory = ".local/share/Steam";
+      method = "symlink";
+    }
+  ];
 }

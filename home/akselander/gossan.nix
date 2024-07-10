@@ -13,7 +13,7 @@
     ./features/desktop/slack
   ];
 
-  impermanence.data.directories = [
+  impermanence.home.directories = [
     {
       directory = "work";
       method = "symlink";

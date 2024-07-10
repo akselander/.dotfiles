@@ -33,10 +33,18 @@ in {
       description = ''
       '';
     };
-    cache.files = lib.mkOption {
-      default = [];
-      description = ''
-      '';
+    cache.files =
+      lib.mkOption {
+      };
+    default = [];
+    description = ''
+    '';
+  };
+
+  config = {
+    home.persistence."/persist/userdata/home/${config.home.username}" = {
+      directories = cfg.home.directories;
+      allowOther = true;
     };
   };
 }
