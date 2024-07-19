@@ -53,6 +53,34 @@
     };
   };
 
+  services.minecraft-server = {
+    enable = true;
+    eula = true;
+    openFirewall = true;
+    declarative = true;
+    whitelist = {
+        talanat = "5feeedfe-0f80-4d97-afcd-0a0b0ccdcd19";
+        deepseasquidd = "98ee4de7-8348-40fb-a3f2-a4ae5051b1e6";
+        Lolmil_1234 = "7be88a0f-ba9c-4938-a30e-e136a979a266";
+    };
+    # see here for more info: https://minecraft.gamepedia.com/Server.properties#server.properties
+    serverProperties = {
+      server-port = 21378;
+      gamemode = "survival";
+      difficulty = "hard";
+      motd = "Bountiful world of MC Lora";
+      max-players = 10;
+      white-list = true;
+      enable-rcon = true;
+      "rcon.password" = "kremowka";
+      enable-query = true;
+    };
+  };
+
+  impermanence.directories = [
+    "/var/lib/minecraft"
+  ];
+
   networking = {
     hostName = "chert";
     networkmanager.enable = true;
