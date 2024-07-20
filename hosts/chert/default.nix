@@ -10,8 +10,6 @@
     ../common/users/akselander
   ];
 
-  impermanence.nukeRoot.enable = true;
-
   services.vrising-server = {
     enable = true;
     openFirewall = true;
@@ -59,9 +57,9 @@
     openFirewall = true;
     declarative = true;
     whitelist = {
-        talanat = "5feeedfe-0f80-4d97-afcd-0a0b0ccdcd19";
-        deepseasquidd = "98ee4de7-8348-40fb-a3f2-a4ae5051b1e6";
-        Lolmil_1234 = "7be88a0f-ba9c-4938-a30e-e136a979a266";
+      talanat = "5feeedfe-0f80-4d97-afcd-0a0b0ccdcd19";
+      deepseasquidd = "98ee4de7-8348-40fb-a3f2-a4ae5051b1e6";
+      Lolmil_1234 = "7be88a0f-ba9c-4938-a30e-e136a979a266";
     };
     # see here for more info: https://minecraft.gamepedia.com/Server.properties#server.properties
     serverProperties = {
@@ -77,9 +75,13 @@
     };
   };
 
-  impermanence.directories = [
-    "/var/lib/minecraft"
-  ];
+  impermanence = {
+    nukeRoot.enable = true;
+    device = "/dev/root_vg/root";
+    directories = [
+      "/var/lib/minecraft"
+    ];
+  };
 
   networking = {
     hostName = "chert";
