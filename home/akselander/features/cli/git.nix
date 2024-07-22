@@ -9,7 +9,7 @@ in {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
     userName = "Aleksander Kuźma";
-    userEmail = "aleksander.a.kuzma@gmail.com";
+    userEmail = "github@akselander.com";
     extraConfig = {
       init.defaultBranch = "main";
 
