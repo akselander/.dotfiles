@@ -9,6 +9,7 @@
     ./firefox.nix
     ./font.nix
     ./gtk.nix
+    ./obsidian.nix
     ./telegram.nix
   ];
 
