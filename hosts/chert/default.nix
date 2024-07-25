@@ -70,8 +70,6 @@
       motd = "Bountiful world of MC Lora";
       max-players = 10;
       white-list = true;
-      enable-rcon = true;
-      "rcon.password" = "kremowka";
       enable-query = true;
     };
   };
