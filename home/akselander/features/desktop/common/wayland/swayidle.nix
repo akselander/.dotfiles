@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+  swaylock = "${config.programs.swaylock.package}/bin/swaylock -i ${config.wallpaper} --daemonize --grace 15";
   pgrep = "${pkgs.procps}/bin/pgrep";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
@@ -32,12 +32,16 @@ in {
   services.swayidle = {
     enable = true;
     systemdTarget = "graphical-session.target";
+    events = [
+      { event = "lock"; command = swaylock; }
+      { event = "before-sleep"; command = swaylock; }
+    ];
     timeouts =
       # Lock screen
       [
         {
           timeout = lockTime;
-          command = "${swaylock} -i ${config.wallpaper} --daemonize --grace 15";
+          command = swaylock;
         }
       ]
       ++
