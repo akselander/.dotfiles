@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  swaylock = "${config.programs.swaylock.package}/bin/swaylock -i ${config.wallpaper} --daemonize --grace 15";
+  swaylock = "${config.programs.swaylock.package}/bin/swaylock -i ${config.wallpaper}";
   pgrep = "${pkgs.procps}/bin/pgrep";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
@@ -32,22 +32,39 @@ in {
   services.swayidle = {
     enable = true;
     systemdTarget = "graphical-session.target";
-    events = [
-      {
-        event = "lock";
-        command = swaylock;
-      }
-      {
-        event = "before-sleep";
-        command = swaylock;
-      }
-    ];
+    events =
+      [
+        {
+          event = "lock";
+          command = swaylock;
+        }
+      ]
+      ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+        {
+          event = "before-sleep";
+          command = "${swaylock} && ${hyprctl} dispatch dpms off";
+        }
+        {
+          event = "after-resume";
+          command = "${hyprctl} dispatch dpms on";
+        }
+      ])
+      ++ (lib.optionals config.wayland.windowManager.sway.enable [
+        {
+          event = "before-sleep";
+          command = "${swaylock} && ${swaymsg} 'output * dpms off'";
+        }
+        {
+          event = "after-resume";
+          command = "${swaymsg} 'output * dpms on'";
+        }
+      ]);
     timeouts =
       # Lock screen
       [
         {
           timeout = lockTime;
-          command = swaylock;
+          command = "${swaylock} --daemonize --grace 15";
         }
       ]
       ++
