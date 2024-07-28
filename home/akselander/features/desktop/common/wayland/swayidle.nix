@@ -33,8 +33,14 @@ in {
     enable = true;
     systemdTarget = "graphical-session.target";
     events = [
-      { event = "lock"; command = swaylock; }
-      { event = "before-sleep"; command = swaylock; }
+      {
+        event = "lock";
+        command = swaylock;
+      }
+      {
+        event = "before-sleep";
+        command = swaylock;
+      }
     ];
     timeouts =
       # Lock screen

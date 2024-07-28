@@ -218,8 +218,8 @@
       };
 
       exec = [
-      "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
-      "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
+        "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
+        "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
       ];
       "$mainMod" = "SUPER";
 
