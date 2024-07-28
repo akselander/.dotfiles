@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./discord.nix
+    ./easyeffects.nix
     ./firefox.nix
     ./font.nix
     ./gtk.nix
