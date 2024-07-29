@@ -15,7 +15,6 @@
     ../common/users/akselander
 
     ../common/optional/bluetooth.nix
-    ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
     ../common/optional/tlp.nix

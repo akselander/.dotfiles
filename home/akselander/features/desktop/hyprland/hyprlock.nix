@@ -90,17 +90,6 @@
           valign = "center";
         }
 
-        # USER
-        {
-          monitor = "";
-          text = "  ";
-          color = "rgba(255, 255, 255, .65)";
-          font_size = 100;
-          position = "0, -180";
-          halign = "center";
-          valign = "center";
-        }
-
       ];
     };
   };

@@ -20,6 +20,7 @@ in {
   };
 
   home-manager.users.akselander = import ../../../../home/akselander/${config.networking.hostName}.nix;
+  services.getty.autologinUser = "akselander";
   security.pam.services = {
     hyprlock = {};
   };

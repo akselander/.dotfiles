@@ -14,7 +14,7 @@
         # Only start one instance of locking script
         lock_cmd = "hyprlock";
         # Lock before suspend
-        before_sleep_md = lock;
+        before_sleep_cmd = lock;
         # Avoid having to press multiple keys to turn on screen
         after_sleep_cmd = "${dpms} on";
       };

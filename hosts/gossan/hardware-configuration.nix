@@ -70,8 +70,5 @@
     lidSwitch = "suspend";
     lidSwitchDocked = "ignore";
     lidSwitchExternalPower = "lock";
-    extraConfig = ''
-      InhibitDelayMaxSec=60
-    '';
   };
 }
