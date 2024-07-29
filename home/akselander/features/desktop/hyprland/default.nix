@@ -10,6 +10,8 @@
     ../common/wayland
     ./binds.nix
     ./hyprbars.nix
+    ./hyprlock.nix
+    ./hypridle.nix
   ];
 
   xdg.portal = let
@@ -245,17 +247,6 @@
             makoctl = lib.getExe' config.services.mako.package "makoctl";
           in
             lib.optionals config.services.mako.enable ["$mainMod,w,exec,${makoctl} dismiss"]
-        )
-        ++
-        # Screen lock
-        (
-          let
-            swaylock = lib.getExe config.programs.swaylock.package;
-          in
-            lib.optionals config.programs.swaylock.enable [
-              ",XF86PowerOff,exec,${swaylock} -S --grace 2"
-              "$mainMod,backspace,exec,${swaylock} -S --grace 2"
-            ]
         );
     };
   };
