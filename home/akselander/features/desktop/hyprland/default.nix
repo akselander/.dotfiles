@@ -7,7 +7,7 @@
 }: {
   imports = [
     ../common
-    ../common/wayland
+    ../wayland
     ./binds.nix
     ./hyprbars.nix
     ./hyprlock.nix
