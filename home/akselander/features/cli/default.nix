@@ -21,7 +21,5 @@
     nix-output-monitor
     fastfetch
     nh # Nice wrapper for NixOS and HM
-    awscli2
-    inputs.awscli-console.default
   ];
 }

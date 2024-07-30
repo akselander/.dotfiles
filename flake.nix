@@ -31,10 +31,7 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    awscli-console = {
-      url = "github:zoocha/awscli-console";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    ags.url = "github:Aylur/ags";
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";

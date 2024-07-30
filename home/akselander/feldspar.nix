@@ -12,7 +12,6 @@
     ./features/games
   ];
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.outer-wilds;
   colorScheme = inputs.nix-colors.colorSchemes.rose-pine;
   #  ------   -----   ---------
   # | DP-2 | | DP-1| | HDMI-A-1|

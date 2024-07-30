@@ -8,6 +8,8 @@
   imports = [
     ../common
     ../wayland
+    ../ags
+    ../pywall.nix
     ./binds.nix
     ./hyprbars.nix
     ./hyprlock.nix
@@ -16,9 +18,13 @@
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
+    xdpg = pkgs.xdg-desktop-portal-gtk;
     xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
   in {
-    extraPortals = [xdph];
+    extraPortals = [
+      xdph
+      xdpg
+    ];
     configPackages = [hyprland];
   };
 
@@ -26,6 +32,12 @@
     grimblast
     hyprpicker
   ];
+
+  home.sessionVariables = {
+    LAST_WALLPAPER_PATH = "${config.home.homeDirectory}/.local/state/lastwallpaper";
+  };
+  wal.enable = true;
+  impermanence.cache.directories = [".local/state/lastwallpaper"];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -200,7 +212,6 @@
           "easeoutback,0.34, 1.56, 0.64, 1"
           "easeinoutback,0.68, -0.6, 0.32, 1.6"
         ];
-
         animation = [
           "border,1,3,easeout"
           "workspaces,1,2,easeoutback,slide"
@@ -219,8 +230,12 @@
         ];
       };
 
+      exec-once = [
+        "${pkgs.swww}/bin/sww-daemon && ${pkgs.swww}/bin/swww img $(cat $LAST_WALLPAPER_PATH) --transition-type none"
+        "${config.programs.ags.package}/bin/ags"
+      ];
+
       exec = [
-        "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
         "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
       ];
       "$mainMod" = "SUPER";

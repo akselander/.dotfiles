@@ -89,7 +89,6 @@
           halign = "center";
           valign = "center";
         }
-
       ];
     };
   };

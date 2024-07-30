@@ -20,7 +20,6 @@
     }
   ];
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.outer-wilds;
   colorScheme = inputs.nix-colors.colorSchemes.rose-pine;
 
   #  ------   -----
